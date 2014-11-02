@@ -3,4 +3,7 @@ class Story < ActiveRecord::Base
   belongs_to :user
   belongs_to :project
   belongs_to :sprint
+
+  attr_accessible :name, :points, :description, :status
+
 end

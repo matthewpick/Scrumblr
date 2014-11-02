@@ -6,4 +6,11 @@ class Story < ActiveRecord::Base
 
   attr_accessible :name, :points, :description, :status
 
+  def get_tasks
+
+  end
+
+  def add_task
+
+  end
 end

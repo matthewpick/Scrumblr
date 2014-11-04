@@ -1,8 +1,8 @@
 class Story < ActiveRecord::Base
   has_many :tasks, dependent: :destroy
-  belongs_to :user
+  has_and_belongs_to_many :users
   belongs_to :project
-  belongs_to :sprint
+  has_and_belongs_to_many :sprints
 
   attr_accessible :name, :points, :description, :status
 

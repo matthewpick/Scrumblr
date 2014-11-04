@@ -1,6 +1,7 @@
 class Sprint < ActiveRecord::Base
 	attr_accessible :sprint_start_date, :sprint_end_date
-	has_many :story
+	
+	has_and_belongs_to_many :stories
 	belongs_to :project
 	
 	def self.create_sprint(info_hash)

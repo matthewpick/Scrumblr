@@ -1,7 +1,9 @@
 class Project < ActiveRecord::Base
   attr_accessible :project_id, :project_name, :project_description, :project_github
 
-   has_many :story, :user, :sprint
+   has_many :stories
+   has_many :sprints
+   has_and_belongs_to_many :users
 
    def get_stories
    

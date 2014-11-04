@@ -22,7 +22,7 @@ end
 
 gem 'angularjs-rails', '~> 1.2.26'
 gem 'jquery-rails'
-
+gem 'haml'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

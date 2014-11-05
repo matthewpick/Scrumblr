@@ -1,0 +1,11 @@
+!!! 5
+%html
+  %head
+    %title Scrumblr
+    = stylesheet_link_tag 'application'
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+    -#Extra stuff here like maybe put it in a container
+    = yield

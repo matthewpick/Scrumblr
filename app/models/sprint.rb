@@ -9,12 +9,11 @@ class Sprint < ActiveRecord::Base
 	def self.create_sprint(info_hash, project_id)	
 		new_sprint = Sprint.new(info_hash)
 		Project.find(project_id).sprints << new_sprint
-		new_sprint.save
 	end
 	
 	#start_date will be DateTime received from a form submission
 	#sprint_id will be a parameter from the route
-	def assign_start_date(start_date, sprint_id)
+	def self.assign_start_date(start_date, sprint_id)
 		sprint = Sprint.find(sprint_id)
 		sprint.sprint_start_date = start_date
 		sprint.save
@@ -22,7 +21,7 @@ class Sprint < ActiveRecord::Base
 	
 	#end_date will be DateTime received from a form submission
 	#sprint_id will be a parameter from the route
-	def assign_end_date(end_date, sprint_id)
+	def self.assign_end_date(end_date, sprint_id)
 		sprint = Sprint.find(sprint_id)
 		sprint.sprint_end_date = end_date
 		sprint.save

@@ -28,7 +28,7 @@ class Sprint < ActiveRecord::Base
 	end
 	
 	#sprint_id will be a parameter from the route
-	def calculate_velocity(sprint_id)
+	def self.calculate_velocity(sprint_id)
 		stories = Sprint.find(sprint_id).stories
 		velocity = 0
 		
@@ -36,17 +36,18 @@ class Sprint < ActiveRecord::Base
 			velocity = velocity + s.story_points
 		end
 		
+		return velocity
 	end
 	
 	#story_id could come from multiple places? 
 	#sprint_id could come from multiple places?
-	def assign_story(story_id, sprint_id)
+	def self.assign_story(story_id, sprint_id)
 		sprint = Sprint.find(sprint_id)
 		sprint.stories << Story.find(story_id)
 	end
 	
-	#sprint_id will be a parameter form the route
-	def get_stories(sprint_id)
+	#sprint_id will be a parameter from the route
+	def self.get_stories(sprint_id)
 		Sprint.find(sprint_id).stories
 	end
 	

@@ -4,7 +4,7 @@ class Story < ActiveRecord::Base
   belongs_to :project
   has_and_belongs_to_many :sprints
 
-  attr_accessible :name, :points, :description, :status
+  attr_accessible :story_name, :story_points, :story_description, :story_status
 
   def get_tasks
     tasks

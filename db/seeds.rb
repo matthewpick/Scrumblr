@@ -8,3 +8,4 @@
 
 Project.create!([{:project_name => 'test', :project_description => 'this is a test', :project_github => 'git@github.com/test'}])
 Sprint.create!([{:sprint_start_date => nil, :sprint_end_date => nil}])
+Story.create!([{:story_name => 'test', :story_description => 'this is a test', :story_points => 1, :story_status => 'started'}])

@@ -6,10 +6,6 @@ class Story < ActiveRecord::Base
 
   attr_accessible :story_name, :story_points, :story_description, :story_status
 
-  def get_tasks
-    tasks
-  end
-
   def add_task (task)
     tasks << task;
   end

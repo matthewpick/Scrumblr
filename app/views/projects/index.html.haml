@@ -1,0 +1,51 @@
+-# in app/views/projects/index.html.haml
+
+%div.col-md-12
+  %div.well
+    %div.h1 Scrumblr
+    %div.btn.btn-primary{:type => "button"}
+      Logout
+    
+  -if flash[:notice]
+    %div.alert.alert-info{:role => "alert"}
+      =flash[:notice]
+    
+
+  %div.panel-group{:role => "tablist", :id => "accordian", "aria-multiselectable" => "true"}
+    %div.panel.panel-default
+      %div.panel-heading{:role => "tab", :id => "headingOne"}
+        %h4.panel-title
+          %a{"data-toggle" => "collapse", "data-parent" => "#accordian", :href => "#collapseOne", "aria-expanded" => "true", "aria-controls" => "collapseOne"}
+            My Projects
+      %div.panel-collapse.collapse{:role => "tabpanel", :id => "collapseOne", "aria-labelledby" => "headingOne"}
+        %ul.list-group
+          %li.list-group-item
+            %button.btn.btn-link{:type => "button"}
+              Project 1
+          %li.list-group-item
+            %button.btn.btn-link{:type => "button"}
+              Project 2
+          %li.list-group-item
+            %button.btn.btn-link{:type => "button"}
+              Project 3
+  
+
+  %div.well
+    %h1 Create Project
+    %form{:role => "form", :method => "post"}
+      %div.form-group
+        %label{:for => "project_name"} Name
+        %input.form-control{:placeholder => "Project name", :type => "name", :id => "project_name", :name => "project[name]"}
+    
+      %div.form-group
+        %label Description
+        %textarea.form-control{:placeholder => "Project description", :rows => "3", :name => "project[description]"}
+    
+      %div.form-group
+        %label Github Repository
+        %input.form-control{:placeholder => "Project repository", :type => "text", :name => "project[repo]"}
+  	
+      %button.btn.btn-primary{:type => "submit"}
+        Create
+
+

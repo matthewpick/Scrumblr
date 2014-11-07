@@ -6,6 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Project.create!([{:project_name => 'test', :project_description => 'this is a test', :project_github => 'git@github.com/test'}])
-Sprint.create!([{:sprint_start_date => nil, :sprint_end_date => nil}])
-Story.create!([{:story_name => 'test', :story_description => 'this is a test', :story_points => 1, :story_status => 'started'}])
+users = [{:user_first_name => 'john', :user_last_name => 'doe', :user_email => 'something@domain.com', :user_velocity => '5'}]
+projects = [{:project_name => 'Scrumblr', :project_description => 'hey look! our SELT project!', :project_github => 'git@github.com/test'},
+						{:project_name => 'Bumblr', :project_description => 'something', :project_github => 'git@github.com/test'}]
+sprints = [{:sprint_start_date => nil, :sprint_end_date => nil}]
+stories = [{:story_name => 'test', :story_description => 'this is a test', :story_points => 1, :story_status => 'started'}]
+
+users.each do |user|
+	User.create!(user)
+end
+
+projects.each do |project|
+	Project.create!(project)
+end
+
+sprints.each do |sprint|
+	Sprint.create!(sprint)
+end
+
+stories.each do |story|
+	Story.create!(story)
+end

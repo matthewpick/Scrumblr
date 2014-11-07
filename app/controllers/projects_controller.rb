@@ -19,6 +19,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
+  	@sample_user = User.find(1)
   end
 
   def show

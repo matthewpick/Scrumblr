@@ -20,14 +20,18 @@
       %div.panel-collapse.collapse{:role => "tabpanel", :id => "collapseOne", "aria-labelledby" => "headingOne"}
         %ul.list-group
           %li.list-group-item
-            %button.btn.btn-link{:type => "button"}
-              Project 1
-          %li.list-group-item
-            %button.btn.btn-link{:type => "button"}
-              Project 2
-          %li.list-group-item
-            %button.btn.btn-link{:type => "button"}
-              Project 3
+            -@sample_user.projects.each do |p|
+              %li.list-group-item
+                %button.btn.btn-link{:type => "button"}
+                  =p.project_name
+            -#%button.btn.btn-link{:type => "button"}
+              -#Project 1
+          -#%li.list-group-item
+            -#%button.btn.btn-link{:type => "button"}
+              -#Project 2
+          -#%li.list-group-item
+            -#%button.btn.btn-link{:type => "button"}
+              -#Project 3
   
 
   %div.well

@@ -20,7 +20,7 @@
       %div.panel-collapse.collapse{:role => "tabpanel", :id => "collapseOne", "aria-labelledby" => "headingOne"}
         %ul.list-group
           %li.list-group-item
-            -@sample_user.projects.each do |p|
+            -@current_user.projects.each do |p|
               %li.list-group-item
                 %button.btn.btn-link{:type => "button"}
                   =p.project_name
@@ -39,15 +39,15 @@
     %form{:role => "form", :method => "post"}
       %div.form-group
         %label{:for => "project_name"} Name
-        %input.form-control{:placeholder => "Project name", :type => "name", :id => "project_name", :name => "project[name]"}
+        %input.form-control{:placeholder => "Project name", :type => "name", :id => "project_name", :name => "project[project_name]"}
     
       %div.form-group
         %label Description
-        %textarea.form-control{:placeholder => "Project description", :rows => "3", :name => "project[description]"}
+        %textarea.form-control{:placeholder => "Project description", :rows => "3", :name => "project[project_description]"}
     
       %div.form-group
         %label Github Repository
-        %input.form-control{:placeholder => "Project repository", :type => "text", :name => "project[repo]"}
+        %input.form-control{:placeholder => "Project repository", :type => "text", :name => "project[project_github]"}
   	
       %button.btn.btn-primary{:type => "submit"}
         Create

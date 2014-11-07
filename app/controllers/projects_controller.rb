@@ -1,11 +1,14 @@
 class ProjectsController < ApplicationController
+	before_filter :set_current_user
+	
 	def create
 		project = params[:project]
-		name = project[:name]
-		desc = project[:description]
-		repo = project[:repo]
+		name = project[:project_name]
+		desc = project[:project_description]
+		repo = project[:project_github]
 		#param = 'Scrumblr'
 		flash[:notice] = "will create project with name #{name}, description #{desc}, and repository #{repo}"
+		@current_user.projects << Project.create!(project)
 		redirect_to projects_path
   end
 
@@ -19,7 +22,7 @@ class ProjectsController < ApplicationController
   end
 
   def index
-  	@sample_user = User.find(1)
+  	#@sample_user = User.find(1)
   end
 
   def show

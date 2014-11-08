@@ -6,6 +6,7 @@ class CreateTasks < ActiveRecord::Migration
 		t.boolean 'needs_discussion'
 		t.text    'description'
 		t.string  'status'
+		t.timestamps
   	end
   end
 

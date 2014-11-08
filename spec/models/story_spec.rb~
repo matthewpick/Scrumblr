@@ -1,5 +1,4 @@
-require 'spec_helper'
-require 'rails_helper'
+require 'rspec'
 
 describe Story do
   describe 'Creating a new Story' do

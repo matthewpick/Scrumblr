@@ -4,52 +4,21 @@ class Sprint < ActiveRecord::Base
 	has_and_belongs_to_many :stories
 	belongs_to :project
 	
-	#info hash will contain :sprint_start_date and :sprint_end_date
-	#project_id will be a parameter from the route
-	def self.create_sprint(info_hash, project_id)	
-		new_sprint = Sprint.new(info_hash)
-		Project.find(project_id).sprints << new_sprint
+	def self.create_sprint(info_hash)	
+		new_sprint = Sprint.create!(info_hash)
 	end
 	
-	#start_date will be DateTime received from a form submission
-	#sprint_id will be a parameter from the route
-	def self.assign_start_date(start_date, sprint_id)
-		sprint = Sprint.find(sprint_id)
-		sprint.sprint_start_date = start_date
-		sprint.save
+	def add_story(story)
+		stories << story
 	end
 	
-	#end_date will be DateTime received from a form submission
-	#sprint_id will be a parameter from the route
-	def self.assign_end_date(end_date, sprint_id)
-		sprint = Sprint.find(sprint_id)
-		sprint.sprint_end_date = end_date
-		sprint.save
-	end
-	
-	#sprint_id will be a parameter from the route
-	def self.calculate_velocity(sprint_id)
-		stories = Sprint.find(sprint_id).stories
-		velocity = 0
-		
+	def calculate_velocity
+		velocity = 0		
 		stories.each do |s|
 			velocity = velocity + s.story_points
 		end
 		
 		return velocity
-	end
-	
-	#story_id could come from multiple places? 
-	#sprint_id could come from multiple places?
-	def self.assign_story(story_id, sprint_id)
-		sprint = Sprint.find(sprint_id)
-		sprint.stories << Story.find(story_id)
-	end
-	
-	#sprint_id will be a parameter from the route
-	def self.get_stories(sprint_id)
-		Sprint.find(sprint_id).stories
-	end
-	
+	end	
 end
 

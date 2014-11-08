@@ -10,6 +10,9 @@ group :development, :test do
 	gem 'simplecov', :require => false
 end
 
+group :production do
+   gem 'sqlite3'
+end
 
 gem 'bootstrap-sass', '~> 3.2.0'
 

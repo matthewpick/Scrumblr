@@ -9,6 +9,14 @@ class Project < ActiveRecord::Base
       new_project = Project.new(info_hash)
    end
 
+   def get_stories
+   
+   end
+   
+   def add_story(story)
+
+   end
+
    def get_users
    
    end

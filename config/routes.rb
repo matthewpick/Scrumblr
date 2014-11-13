@@ -1,6 +1,7 @@
 Scrumbler::Application.routes.draw do
   resources :tasks
   resources :projects
+  resources :storys
 
   root :to => redirect('/projects')
    

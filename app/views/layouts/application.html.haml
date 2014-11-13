@@ -4,8 +4,9 @@
     %title Scrumblr
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
+    = javascript_include_tag 'ScrumblrApp'
     = csrf_meta_tags
 
-  %body
+  %body{'ng-app' => 'ScrumblrApp'}
     -#Extra stuff here like maybe put it in a container
     = yield

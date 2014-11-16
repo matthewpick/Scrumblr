@@ -3,6 +3,7 @@ class SprintsController < ApplicationController
 	def create
 		# updates the DB with a new sprint
 		# responds to an AJAX request?
+		Sprint.create!(params[:sprint])
 	end
 	
 	def new
@@ -11,6 +12,9 @@ class SprintsController < ApplicationController
 
   def update
   	# updates the info for an existing sprint within the DB
+  	sprint_id = params[:id]
+  	@sprint = Sprint.find(sprint_id)
+  	@sprint.update_attributes(params[:sprint])
   end
 
   def edit
@@ -22,7 +26,9 @@ class SprintsController < ApplicationController
   end
 
   def index
-
+    project_id = params[:project_id]
+    @sprints = Project.find(project_id).sprints
+    render json: @sprints
   end
 
   def show

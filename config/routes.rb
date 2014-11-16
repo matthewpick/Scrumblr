@@ -2,6 +2,7 @@ Scrumbler::Application.routes.draw do
   resources :tasks
   resources :projects
   resources :storys
+  resources :sprints
 
 
   # resources :users do

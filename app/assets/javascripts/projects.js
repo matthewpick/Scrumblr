@@ -4,6 +4,7 @@ app.controller('ProjectsController', [function() {
   this.sprintsVisible = false;
   
   this.showSprints = function showSprints() {
+    
     return this.sprintsVisible = true;
     
   };

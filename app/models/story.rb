@@ -9,4 +9,6 @@ class Story < ActiveRecord::Base
   def add_task (task)
     tasks << task;
   end
+
+  validates :story_name, :presence => true
 end

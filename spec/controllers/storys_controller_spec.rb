@@ -1,9 +1,9 @@
-require 'rspec'
+require 'spec_helper'
+require 'rails_helper'
 
-describe 'My behaviour' do
+describe StorysController do
 
-  it 'should do something' do
+  it 'Should be able to create a story' do
 
-    true.should == false
   end
 end

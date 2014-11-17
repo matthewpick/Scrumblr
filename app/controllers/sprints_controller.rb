@@ -28,7 +28,10 @@ class SprintsController < ApplicationController
   def index
     project_id = params[:project_id]
     @sprints = Project.find(project_id).sprints
-    render json: @sprints
+    
+    respond_to do |format|
+      format.json {render json: @sprints and return}
+    end    
   end
 
   def show

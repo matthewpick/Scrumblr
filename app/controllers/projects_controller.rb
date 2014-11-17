@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-	before_filter :set_current_user
+	#before_filter :set_current_user
 	
 	def create
 		project = params[:project]
@@ -22,9 +22,13 @@ class ProjectsController < ApplicationController
   end
 
   def index
+    @current_user = User.find(params[:user_id])
   	#@sample_user = User.find(1)
   end
 
   def show
+    project_id = params[:id]
+    @sprints = Project.find(project_id).sprints
+    render :json => @sprints
   end
 end

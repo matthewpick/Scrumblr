@@ -1,8 +1,8 @@
 class CreateSprints < ActiveRecord::Migration
   def up
   	create_table 'sprints' do |t|
-  		t.datetime 'sprint_start_date'
-  		t.datetime 'sprint_end_date'
+  		t.date 'sprint_start_date'
+  		t.date 'sprint_end_date'
   	end
   end
 

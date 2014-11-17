@@ -27,9 +27,9 @@ ActiveRecord::Schema.define(:version => 20141104054030) do
   end
 
   create_table "sprints", :force => true do |t|
-    t.datetime "sprint_start_date"
-    t.datetime "sprint_end_date"
-    t.integer  "project_id"
+    t.date    "sprint_start_date"
+    t.date    "sprint_end_date"
+    t.integer "project_id"
   end
 
   create_table "sprints_stories", :id => false, :force => true do |t|

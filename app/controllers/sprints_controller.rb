@@ -43,6 +43,7 @@ class SprintsController < ApplicationController
     sprint_id = params[:id]
     @current_sprint = Sprint.find(sprint_id)
     @stories = @current_sprint.stories
+    @tasks = Array[]
     
     @stories.each do |story|
       @tasks << story.tasks

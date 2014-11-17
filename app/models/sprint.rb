@@ -4,6 +4,10 @@ class Sprint < ActiveRecord::Base
 	has_and_belongs_to_many :stories
 	belongs_to :project
 	
+	validates :sprint_start_date, :presence => true
+	validates :sprint_end_date, :presence => true
+	validate :start_date_before_end_date
+	
 	def self.create_sprint(info_hash)	
 		new_sprint = Sprint.create!(info_hash)
 	end
@@ -20,5 +24,11 @@ class Sprint < ActiveRecord::Base
 		
 		return velocity
 	end	
+	
+	def start_date_before_end_date
+	  if self.sprint_start_date >= self.sprint_end_date
+	    errors.add(:sprint_start_date, 'must be at an earlier date than end date')
+	  end
+	end
 end
 

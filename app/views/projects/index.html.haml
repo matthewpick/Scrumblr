@@ -6,7 +6,7 @@
     %div#accordian.panel-group{:role => "tablist", "aria-multiselectable" => "true"}
       %div.panel.panel-default
         -@current_user.projects.each do |p|
-          %div.panel-heading{:role => "tab", :id => "heading#{p.id}", "ng-click" => "projects.showSprints()", :href => "/projects/#{p.id}"}
+          %div.panel-heading{:role => "tab", :id => "heading#{p.id}", "ng-click" => "projects.showSprints()"}
             %h4.panel-title
               %a{"data-toggle" => "collapse", "data-parent" => "#accordian", :href => "#collapse#{p.id}", 
                  "aria-expanded" => "true", "aria-controls" => "collapse#{p.id}"}

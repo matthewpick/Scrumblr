@@ -10,7 +10,8 @@ users = [{:user_first_name => 'john', :user_last_name => 'doe', :user_email => '
 projects = [{:project_name => 'Scrumblr', :project_description => 'hey look! our SELT project!', :project_github => 'git@github.com/test'},
 						{:project_name => 'Bumblr', :project_description => 'something', :project_github => 'git@github.com/test'}]
 sprints = [{:sprint_start_date => nil, :sprint_end_date => nil}]
-stories = [{:story_name => 'test', :story_description => 'this is a test', :story_points => 1, :story_status => 'started'}]
+stories = [{:story_name => 'test', :story_description => 'this is a test', :story_points => 1, :story_status => 'started'}, {:story_name => 'test2', :story_description => 'this is a test2', :story_points => 1, :story_status => 'started'}]
+tasks = [{:title => 'task', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => false}, {:title => 'task', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => true}]
 
 users.each do |user|
 	User.create!(user)
@@ -26,4 +27,8 @@ end
 
 stories.each do |story|
 	Story.create!(story)
+end
+
+tasks.each do |task|
+  Task.create!(task)
 end

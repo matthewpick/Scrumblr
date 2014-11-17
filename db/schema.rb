@@ -51,12 +51,14 @@ ActiveRecord::Schema.define(:version => 20141104054030) do
   end
 
   create_table "tasks", :force => true do |t|
-    t.string  "title"
-    t.integer "points"
-    t.boolean "needs_discussion"
-    t.text    "description"
-    t.string  "status"
-    t.integer "story_id"
+    t.string   "title"
+    t.integer  "points"
+    t.boolean  "needs_discussion"
+    t.text     "description"
+    t.string   "status"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.integer  "story_id"
   end
 
   create_table "users", :force => true do |t|

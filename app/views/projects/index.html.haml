@@ -46,12 +46,12 @@
                     %div.form-group
                       %label{:for => "startDate"}
                         Sprint Start Date
-                      %input#startDate.form-control{:type => "date"}
+                      %input#startDate.form-control{:type => "date", "ng-model" => "start_date"}
                     %div.form-group
                       %label{:for => "endDate"}
                         Sprint End Date
-                      %input#endDate.form-control{:type => "date"}
-                    %button.btn.btn-primary{:type => "submit"}
+                      %input#endDate.form-control{:type => "date", "ng-model" => "end_date"}
+                    %button.btn.btn-primary{:type => "submit", "ng-click" => "projects.validate()"}
                       Create
         
 =javascript_include_tag 'projects'

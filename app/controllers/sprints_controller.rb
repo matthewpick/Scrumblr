@@ -3,7 +3,20 @@ class SprintsController < ApplicationController
 	def create
 		# updates the DB with a new sprint
 		# responds to an AJAX request?
-		Sprint.create!(params[:sprint])
+		project_id = params[:project_id]
+		sprint_info = params[:sprint_info]
+		@sprint = Sprint.create!(sprint_info)
+		Project.find(project_id).sprints << @sprint
+		
+		@info_array = []
+		@sprints = Project.find(project_id).sprints
+		
+		@sprints.each do |sprint|
+      @info_array << {:id => sprint.id, :project_id => sprint.project_id, :sprint_start_date => sprint.sprint_start_date, 
+                      :sprint_end_date => sprint.sprint_end_date, :discussions => sprint.count_discussions}
+    end
+    
+		render json: @info_array
 	end
 	
 	def new

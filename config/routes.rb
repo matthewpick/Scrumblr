@@ -18,6 +18,5 @@ Scrumbler::Application.routes.draw do
     resources :tasks
   end
 
-
   root :to => redirect('/projects')
 end

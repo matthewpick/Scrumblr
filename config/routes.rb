@@ -4,15 +4,20 @@ Scrumbler::Application.routes.draw do
   # resources :storys
 
 
-  resources :users do
-    resources :projects do
-      resources :sprints do
-        resources :storys do
-          resources :tasks
-        end
-      end
-    end
+  resources :users
+
+  resources :projects do
+    resources :sprints
   end
+
+  resources :sprints do
+    resources :storys
+  end
+
+  resources :storys do
+    resources :tasks
+  end
+
 
   root :to => redirect('/projects')
 end

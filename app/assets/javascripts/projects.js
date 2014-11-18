@@ -30,7 +30,7 @@ app.service('ProjectsService', function($http, $q) {
   function getSprints(project_id) {
     var request = $http({
       method: "get",
-      url: "/users/1/projects/" + project_id.toString(),
+      url: "/projects/" + project_id.toString(),
       timeout: 5000,
       responseType: "json"
     });

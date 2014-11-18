@@ -17,9 +17,9 @@
           %div.panel-collapse.collapse{:id => "collapse#{p.id}", :role => "tabpanel", "aria-labelledby" => "heading#{p.id}"}
             %div.panel-body
               %p
-                =p.project_description 
+                Description: #{p.project_description} 
               %p
-                =p.project_github
+                Github Repo: #{p.project_github}
   
   %span.col-md-6.pull-right{"ng-show" => "sprintsVisible"}
     %div.well
@@ -32,8 +32,27 @@
           %span.badge.pull-right
             {{sprint.discussions}}
         %li.list-group-item
-          %button.btn.btn-link
-            New Sprint
+          %div#form.panel-group{:role => "tablist", "aria-multiselectable" => "true"}
+            %div.panel.panel-default
+              %div#formHeading.panel-heading{:role => "tab"}
+                %h4.panel-title
+                  %a{"data-toggle" => "collapse", "data-parent" => "#form", :href => "#collapseForm", 
+                     "aria-expanded" => "true", "aria-controls" => "#collapseForm"}
+                    New Sprint
+                  %span.glyphicon.glyphicon-plus.pull-right
+              %div#collapseForm.panel-collapse.collapse{:role => "tabpanel", "aria-labelledby" => "#formHeading"}
+                %div.panel-body
+                  %form{:role => "form"}
+                    %div.form-group
+                      %label{:for => "startDate"}
+                        Sprint Start Date
+                      %input#startDate.form-control{:type => "date"}
+                    %div.form-group
+                      %label{:for => "endDate"}
+                        Sprint End Date
+                      %input#endDate.form-control{:type => "date"}
+                    %button.btn.btn-primary{:type => "submit"}
+                      Create
         
 =javascript_include_tag 'projects'
 

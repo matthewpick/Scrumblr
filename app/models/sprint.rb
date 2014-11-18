@@ -25,6 +25,16 @@ class Sprint < ActiveRecord::Base
 		return velocity
 	end	
 	
+	def count_discussions
+	  discussions = 0
+	  
+	  stories.each do |story|
+	    discussions += story.count_discussions
+	  end
+	  
+	  return discussions
+	end
+	
 	def start_date_before_end_date
 	  if self.sprint_start_date >= self.sprint_end_date
 	    errors.add(:sprint_start_date, 'must be at an earlier date than end date')

@@ -37,6 +37,15 @@ end
 @user = User.find(1)
 @user.projects << Project.find(1)
 @user.projects << Project.find(2)
+
 @project = Project.find(1)
 @project.sprints << Sprint.find(1)
 @project.sprints << Sprint.find(2)
+
+@sprint = Sprint.find(1)
+@sprint.stories << Story.find(1)
+@sprint.stories << Story.find(2)
+
+@story = Story.find(1)
+@story.tasks << Task.find(1)
+@story.tasks << Task.find(2)

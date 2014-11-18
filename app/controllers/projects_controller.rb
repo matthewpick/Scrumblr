@@ -22,12 +22,19 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    @projects = @current_user.projects
+    
   end
 
   def show
     project_id = params[:id]
+    @info_array = []
     @sprints = Project.find(project_id).sprints
-    render :json => @sprints
+    
+    @sprints.each do |sprint|
+      @info_array << {:id => sprint.id, :project_id => sprint.project_id, :sprint_start_date => sprint.sprint_start_date, 
+                      :sprint_end_date => sprint.sprint_end_date, :discussions => sprint.count_discussions}
+    end
+    
+    render :json => @info_array
   end
 end

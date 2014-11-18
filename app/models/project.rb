@@ -24,5 +24,15 @@ class Project < ActiveRecord::Base
    def add_sprint(sprint)
 
    end
+   
+   def count_discussions
+     discussions = 0
+     
+     sprints.each do |sprint|
+       discussions += sprint.count_discussions
+     end
+     
+     return discussions
+   end
 
 end

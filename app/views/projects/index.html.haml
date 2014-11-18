@@ -13,7 +13,7 @@
                  "aria-expanded" => "true", "aria-controls" => "collapse#{p.id}", "ng-click" => "projects.showSprints(#{p.id})"}
                 =p.project_name
                 %span.badge.pull-right
-                  21
+                  =p.count_discussions
           %div.panel-collapse.collapse{:id => "collapse#{p.id}", :role => "tabpanel", "aria-labelledby" => "heading#{p.id}"}
             %div.panel-body
               %p
@@ -29,6 +29,8 @@
         %li.list-group-item{"ng-repeat" => "sprint in sprints"}
           %button.btn.btn-link 
             {{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
+          %span.badge.pull-right
+            {{sprint.discussions}}
         %li.list-group-item
           %button.btn.btn-link
             New Sprint

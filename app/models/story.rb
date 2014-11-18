@@ -9,6 +9,18 @@ class Story < ActiveRecord::Base
   def add_task (task)
     tasks << task;
   end
+  
+  def count_discussions
+    discussions = 0
+    
+    tasks.each do |task|
+      if task.needs_discussion
+        discussions += 1
+      end
+    end
+    
+    return discussions
+  end
 
   validates :story_name, :presence => true
 end

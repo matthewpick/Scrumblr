@@ -15,9 +15,10 @@ Scrumbler::Application.routes.draw do
     resources :tasks
   end
 
+  resources :home, :only => :index
   resources :users, :only => :show
   match 'auth/:provider/callback' => 'session#create'
   match '/signout' => 'session#destroy', :as => :signout
 
-  root :to => redirect('/projects')
+  root :to => redirect('/home')
 end

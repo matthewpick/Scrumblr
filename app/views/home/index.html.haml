@@ -1,0 +1,11 @@
+-# in app/views/home/index.html.haml
+-#TODO if already logged in forward to projects dashboard
+#banner.jumbotron.page-header.text-center
+  %H3 Let's get ready
+  %H3 to
+  %H1 Scrumbl
+
+  %a.btn.btn-lg.btn-default{:href => '/auth/github'}
+    %span Sign in With GitHub
+    =image_tag("Octocat.png", height: '48px');
+

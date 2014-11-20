@@ -2,8 +2,8 @@ require 'spec_helper'
 require 'rails_helper'
 
 describe TasksController do
-  describe '' do 
+  describe 'stuff' do 
   end
-  describe '' do 
+  describe 'more stuff' do 
   end
 end

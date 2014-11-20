@@ -3,9 +3,6 @@ Scrumbler::Application.routes.draw do
   # resources :projects
   # resources :storys
 
-
-  resources :users
-
   resources :projects do
     resources :sprints
   end
@@ -17,6 +14,10 @@ Scrumbler::Application.routes.draw do
   resources :storys do
     resources :tasks
   end
+
+  resources :users, :only => :show
+  match 'auth/:provider/callback' => 'session#create'
+  match '/signout' => 'session#destroy', :as => :signout
 
   root :to => redirect('/projects')
 end

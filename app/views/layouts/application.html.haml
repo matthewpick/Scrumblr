@@ -9,4 +9,22 @@
 
   %body{'ng-app' => 'ScrumblrApp'}
     -#Extra stuff here like maybe put it in a container
+    %div.col-md-12
+      %div.well
+        %div.h1 Scrumblr
+
+        - if flash[:notice]
+          %div.alert.alert-info{:role => 'alert'}
+          =flash[:notice]
+        - if current_user
+          %p.welcome! You are logged in via #{current_user.provider} as #{current_user.name}
+          = link_to 'View Profile', user_path(current_user)
+          = link_to 'Sign Out', signout_path
+          %div.btn.btn-primary{:type => 'button', :href => user_path(current_user)}
+            View Profile
+          %div.btn.btn-primary{:type => 'button', :href => ''}
+            Logout
+        - else
+          %p.login= link_to 'Sign in with github', '/auth/github'
+
     = yield

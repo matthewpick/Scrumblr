@@ -5,7 +5,8 @@
 %div{"ng-controller" => "ProjectsController as projects"}
   %span.col-md-6
     %div#accordian.panel-group{:role => "tablist", "aria-multiselectable" => "true"}
-      -@current_user.projects.each do |p|
+    - if current_user
+      - current_user.projects.each do |p|
         %div.panel.panel-default
           %div.panel-heading{:role => "tab", :id => "heading#{p.id}"}
             %h4.panel-title

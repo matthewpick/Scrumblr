@@ -62,12 +62,13 @@ ActiveRecord::Schema.define(:version => 20141104054030) do
   end
 
   create_table "users", :force => true do |t|
-    t.string   "user_first_name"
-    t.string   "user_last_name"
-    t.string   "user_email"
+    t.string   "name"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "session_token"
     t.integer  "user_velocity"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
 end

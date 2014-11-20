@@ -1,9 +1,10 @@
 class CreateUsers < ActiveRecord::Migration
   def up
   	create_table 'users' do |t|
-  		t.string 'user_first_name'
-  		t.string 'user_last_name'
-  		t.string 'user_email'
+  		t.string 'name'
+  		t.string 'provider'
+  		t.string 'uid'
+			t.string 'session_token'
   		t.integer 'user_velocity'
   		t.timestamps
   	end

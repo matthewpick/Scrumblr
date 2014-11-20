@@ -1,0 +1,12 @@
+development:
+  app_id: 2760a262aff2a127a8cc
+  secret: 3be534fbd03be77a81dd6926d21f48c83b97f64e
+
+test:
+# The Same As DEV
+  app_id: 2760a262aff2a127a8cc
+  secret: 3be534fbd03be77a81dd6926d21f48c83b97f64e
+
+production:
+  app_id: 0a2df91cbb3d9b26afc3
+  secret: 49502f6900842579dd1aad3f73715f91051daa5d

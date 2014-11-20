@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-users = [{:user_first_name => 'john', :user_last_name => 'doe', :user_email => 'something@domain.com', :user_velocity => '5'}]
+users = [{:name => 'john', :provider => 'github', :uid => '', :session_token => ''}]
 projects = [{:project_name => 'Scrumblr', :project_description => 'hey look! our SELT project!', :project_github => 'git@github.com/test'},
 						{:project_name => 'Bumblr', :project_description => 'something', :project_github => 'git@github.com/test'}]
 sprints = [{:sprint_start_date => Date.new(2014,11,17), :sprint_end_date => Date.new(2014,11,24)},{:sprint_start_date => Date.new(2014,11,24), :sprint_end_date => Date.new(2014,11,30)}]

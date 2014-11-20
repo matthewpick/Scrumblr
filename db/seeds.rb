@@ -6,7 +6,8 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-users = [{:name => 'john', :provider => 'github', :uid => '', :session_token => ''}]
+# after finding your uid from github, fill it in under users
+users = [{:name => '', :provider => 'github', :uid => '', :session_token => ''}]
 projects = [{:project_name => 'Scrumblr', :project_description => 'hey look! our SELT project!', :project_github => 'git@github.com/test'},
 						{:project_name => 'Bumblr', :project_description => 'something', :project_github => 'git@github.com/test'}]
 sprints = [{:sprint_start_date => Date.new(2014,11,17), :sprint_end_date => Date.new(2014,11,24)},{:sprint_start_date => Date.new(2014,11,24), :sprint_end_date => Date.new(2014,11,30)}]
@@ -34,7 +35,7 @@ tasks.each do |task|
   Task.create!(task)
 end
 
-@user = User.find(1)
+@user = User.find_by_uid()  # put your uid here
 @user.projects << Project.find(1)
 @user.projects << Project.find(2)
 

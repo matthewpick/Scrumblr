@@ -5,6 +5,12 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
   $scope.lastOpened = 0;
   $scope.sprints = [];
   
+  this.hideAll = function hideAll() {
+    $scope.sprintsVisible = false;
+    $scope.lastOpened = 0;
+    $scope.sprints = [];
+  };
+  
   this.showSprints = function showSprints(project_id) {  
     if($scope.lastOpened == project_id)
     {

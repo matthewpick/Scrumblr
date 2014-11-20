@@ -1,0 +1,7 @@
+follow these instructions in order to link existing projects in DB with your github account
+
+1. run the app and use single sign on
+2. using rails console find out what your uid is
+3. go to seeds.rb and fill in your uid in the indicated places (also, can fill in your name associated with the github as well if you want)
+4. reset and reseed the DB
+5. run the app again and sign in -- you should see projects

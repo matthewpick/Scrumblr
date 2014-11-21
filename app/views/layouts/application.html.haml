@@ -18,12 +18,10 @@
           =flash[:notice]
         - if current_user
           %p.welcome! You are logged in via #{current_user.provider} as #{current_user.name}
-          = link_to 'View Profile', user_path(current_user)
-          = link_to 'Sign Out', signout_path
-          %div.btn.btn-primary{:type => 'button', :href => user_path(current_user)}
-            View Profile
-          %div.btn.btn-primary{:type => 'button', :href => ''}
-            Logout
+          %a.btn.btn-primary{:href => user_path(current_user)}
+            %span View Profile
+          %a.btn.btn-primary{:href => signout_path}
+            %span Logout
         - else
           %p.login= link_to 'Sign in with github', '/auth/github'
         - if !session[:session_token]

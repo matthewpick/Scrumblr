@@ -26,5 +26,7 @@
             Logout
         - else
           %p.login= link_to 'Sign in with github', '/auth/github'
+        - if !session[:session_token]
+          %p session token lost!
 
     = yield

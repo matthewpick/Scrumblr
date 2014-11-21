@@ -6,7 +6,7 @@ class SessionController < ApplicationController
     user = User.find_by_provider_and_uid(auth['provider'], auth['uid']) ||
               User.create_with_omniauth(auth)
     session[:session_token] = user.session_token
-    redirect_to root_path
+    redirect_to projects_path
   end
 
   def destroy

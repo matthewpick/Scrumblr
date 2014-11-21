@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
 		  @current_user.projects << Project.create!(project)
 		end
 		
-	 redirect_to root_path
+	 redirect_to projects_path
   end
 
   def update

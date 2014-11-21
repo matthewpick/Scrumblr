@@ -4,6 +4,7 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
   $scope.sprintsVisible = false;
   $scope.lastOpened = 0;
   $scope.sprints = [];
+  $scope.token = $('meta[name="csrf-token"]').attr('content');
   
   this.hideAll = function hideAll() {
     $scope.sprintsVisible = false;
@@ -55,6 +56,9 @@ app.service('ProjectsService', function($http, $q) {
     var request = $http({
       method: "get",
       url: "/projects/" + project_id.toString(),
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
       timeout: 5000,
       responseType: "json"
     });
@@ -68,6 +72,9 @@ app.service('ProjectsService', function($http, $q) {
       method: "post",
       url: "/sprints", 
       data: data,
+      headers: {
+        'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+      },
       timeout: 5000
     });
     

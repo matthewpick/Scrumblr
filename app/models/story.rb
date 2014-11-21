@@ -21,6 +21,15 @@ class Story < ActiveRecord::Base
     
     return discussions
   end
+  
+  def calculate_points
+    points = 0;
+    tasks.each do |task|
+      points += task.points
+    end
+    
+    return points
+  end
 
   validates :story_name, :presence => true
 end

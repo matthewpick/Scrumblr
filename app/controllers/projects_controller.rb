@@ -3,13 +3,11 @@ class ProjectsController < ApplicationController
 	
 	def create
 		project = params[:project]
-		name = project[:project_name]
-		desc = project[:project_description]
-		repo = project[:project_github]
-		#param = 'Scrumblr'
-		flash[:notice] = "will create project with name #{name}, description #{desc}, and repository #{repo}"
-		@current_user.projects << Project.create!(project)
-		redirect_to projects_path
+		if @current_user
+		  @current_user.projects << Project.create!(project)
+		end
+		
+	 redirect_to root_path
   end
 
   def update
@@ -22,9 +20,10 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    if @current_user
-      @projects = @current_user.projects
-    end
+    #if @current_user
+      #@projects = @current_user.projects
+    #end
+    
   end
 
   def show

@@ -17,9 +17,10 @@ class Sprint < ActiveRecord::Base
 	end
 	
 	def calculate_velocity
-		velocity = 0		
+		velocity = 0	
+			
 		stories.each do |s|
-			velocity = velocity + s.story_points
+			velocity = velocity + s.calculate_points
 		end
 		
 		return velocity

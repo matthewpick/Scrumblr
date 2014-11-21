@@ -1,5 +1,6 @@
 class SprintsController < ApplicationController
-
+  #before_filter :set_current_user
+  
 	def create
 		# updates the DB with a new sprint
 		# responds to an AJAX request?
@@ -39,12 +40,14 @@ class SprintsController < ApplicationController
   end
 
   def index
+=begin
     project_id = params[:project_id]
     @sprints = Project.find(project_id).sprints
     
     respond_to do |format|
       format.json {render json: @sprints and return}
-    end    
+    end 
+=end   
   end
 
   def show

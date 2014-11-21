@@ -27,8 +27,21 @@
               %a{"data-toggle" => "collapse", "data-parent" => "#accordian", :href => "#collapseNewProject", 
                 "aria-expanded" => "true", "aria-controls" => "collapseNewProject", "ng-click" => "projects.hideAll()"}
                 New Project
+                %span.glyphicon.glyphicon-plus.pull-right
           %div#collapseNewProject.panel-collapse.collapse{:role => "tabpanel", "aria-labelledby" => "newProject"}
-            New Project Stuff goes here
+            %div.panel-body
+              %form{:role => "form", :method => "post", :action => "/projects"}
+                %div.form-group
+                  %label{:for => "project_name"} Name
+                  %input.form-control{:placeholder => "Project name", :type => "name", :id => "project_name", :name => "project[project_name]"}    
+                %div.form-group
+                  %label Description
+                  %textarea.form-control{:placeholder => "Project description", :rows => "3", :name => "project[project_description]"}  
+                %div.form-group
+                  %label Github Repository
+                  %input.form-control{:placeholder => "Project repository", :type => "text", :name => "project[project_github]"} 	
+                %button.btn.btn-primary{:type => "submit"}
+                  Create
   
     %span.col-md-6.pull-right{"ng-show" => "sprintsVisible"}
       %div.well
@@ -48,7 +61,7 @@
                     %a{"data-toggle" => "collapse", "data-parent" => "#form", :href => "#collapseForm", 
                        "aria-expanded" => "true", "aria-controls" => "#collapseForm"}
                       New Sprint
-                    %span.glyphicon.glyphicon-plus.pull-right
+                      %span.glyphicon.glyphicon-plus.pull-right
                 %div#collapseForm.panel-collapse.collapse{:role => "tabpanel", "aria-labelledby" => "#formHeading"}
                   %div.panel-body
                     %form{:role => "form"}

@@ -34,5 +34,15 @@ class Project < ActiveRecord::Base
      
      return discussions
    end
+   
+   def average_velocity
+    average = 0
+    
+    sprints.each do |sprint|
+      average += sprint.calculate_velocity
+    end
+    
+    average = average.to_f / sprints.count
+   end
 
 end

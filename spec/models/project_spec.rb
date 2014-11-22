@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe Project do
    before :each do
-      load Rails.root + 'db/seeds.rb'
+      #load Rails.root + 'db/seeds.rb'
       @fake_hash = Hash[:project_name => 'Dummy Name', :project_description => 'Description', :project_github => 'git@github/dummy']
       @fake_project = Project.new(@fake_hash)
       @fake_sprint = Sprint.new Hash[:sprint_start_date => Date.new(2014,11,7), :sprint_end_date => Date.new(2014,11,21)]

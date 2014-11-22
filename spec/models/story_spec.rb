@@ -3,7 +3,7 @@ require 'rails_helper'
 
 describe Story do
   before :each do
-      load Rails.root + 'db/seeds.rb'
+      #load Rails.root + 'db/seeds.rb'
       @info = Hash[:story_points => 3, :story_description => 'fake', :story_status => 'fake']
       @fake_task = Task.new Hash[:title=>'title', :points=>1, :status=>'backlog', :needs_discussion=>true, :description=>'text' ]
       @fake_task2 = Task.new Hash[:title=>'title', :points=>3, :status=>'backlog', :needs_discussion=>false, :description=>'text' ]

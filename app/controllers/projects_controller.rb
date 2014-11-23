@@ -3,8 +3,8 @@ class ProjectsController < ApplicationController
 	
 	def create
 		project = params[:project]
-		if @current_user
-		  @current_user.projects << Project.create!(project)
+		if current_user
+		  current_user.projects << Project.create!(project)
 		end
 		
 	 redirect_to projects_path

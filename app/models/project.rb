@@ -42,7 +42,11 @@ class Project < ActiveRecord::Base
       average += sprint.calculate_velocity
     end
     
-    average = average.to_f / sprints.count
+    if sprints.count > 0
+      average = average.to_f / sprints.count
+    end
+    
+    return average
    end
 
 end

@@ -20,9 +20,20 @@ class ProjectsController < ApplicationController
   end
 
   def index
-    #if @current_user
-      #@projects = @current_user.projects
-    #end
+    if current_user
+      @collaborators = {}
+      projects = @current_user.projects
+      
+      projects.each do |project|
+        team = []
+        project.users.each do |user|
+          if user.id != current_user.id
+            team << team
+          end 
+        end
+        @collaborators[project.id] = team 
+      end
+    end
     
   end
 

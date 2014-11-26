@@ -4,6 +4,7 @@ class CreateUsers < ActiveRecord::Migration
   		t.string 'name'
   		t.string 'provider'
   		t.string 'uid'
+  		t.string 'email'
 			t.string 'session_token'
   		t.integer 'user_velocity'
   		t.timestamps

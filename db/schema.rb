@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141104054030) do
+ActiveRecord::Schema.define(:version => 20141126220638) do
+
+  create_table "invites_projects", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+  end
 
   create_table "projects", :force => true do |t|
     t.string   "project_name"
@@ -65,6 +70,7 @@ ActiveRecord::Schema.define(:version => 20141104054030) do
     t.string   "name"
     t.string   "provider"
     t.string   "uid"
+    t.string   "email"
     t.string   "session_token"
     t.integer  "user_velocity"
     t.datetime "created_at",    :null => false

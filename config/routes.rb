@@ -19,7 +19,7 @@ Scrumbler::Application.routes.draw do
   resources :users, :only => :show
   match 'auth/:provider/callback' => 'session#create'
   match '/signout' => 'session#destroy', :as => :signout
-  match '/users/invite', to: 'users#invite', via: :post
+  match '/users/invite/:project_id', to: 'users#invite', via: :post
 
   root :to => redirect('/home')
 end

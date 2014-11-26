@@ -6,7 +6,7 @@
     %a.button.btn.btn-link{:type => "button", :href => "/users/#{current_user.id}"}
       My Invites
       %span.badge
-        7
+        #{current_user.invites.count}
   %div{"ng-controller" => "ProjectsController as projects"}
     %span.col-md-6
       %div#accordian.panel-group{:role => "tablist", "aria-multiselectable" => "true"}    
@@ -37,6 +37,10 @@
                         %li{:role => "presentation"}
                           %a{:role => "menuitem", :tabindex => "-1", :href => "#"}
                             #{member.name}
+                      -p.pending_users.each do |pending|
+                        %li{:role => "presentation"}
+                          %a{:role => "menuitem", :tabindex => "-1"}
+                            #{pending.name} (pending)
                       %li.divider{:role => "presentation"}
                       %li{:role => "presentation"}
                         %a{:role => "menuitem", :tabindex => "-1", :href => "#", "ng-click" => "projects.showInviteForm()"}
@@ -44,12 +48,12 @@
                   %span.button.btn.btn-primary.pull-right
                     Edit Project
                 %p
-                  =form_tag users_invite_path :method => :post do
+                  =form_tag "users/invite/#{p.id}", :method => :post do
                     %div.input-group{"ng-show" => "inviteVisible"}
                       %span.input-group-btn
                         %button.btn.btn-default{:type => "submit"}
                           Invite
-                      %input.form-control{:placeholder => "User Email", :type => "email", :name => "user_email"}
+                      %input.form-control{:placeholder => "User Email", :type => "email", :name => "email"}
                       %span.input-group-btn
                         %button.btn.btn-default{:type => "button", "ng-click" => "projects.hideInviteForm()"}
                           %span.glyphicon.glyphicon-remove

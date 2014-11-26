@@ -43,7 +43,7 @@ tasks.each do |task|
 end
 
 # Assign dummmy projects to every user
-User.all do |user|
+User.all.each do |user|
 	user.projects << Project.find(1)
 	user.projects << Project.find(2)
 end
@@ -52,11 +52,11 @@ end
 @project = Project.find(1)
 @project.sprints << Sprint.find(1)
 @project.sprints << Sprint.find(2)
-@project.users << User.find_by_name('David')
-@project.users << User.find_by_name('Matt')
-@project.users << User.find_by_name('Becca')
-@project.users << User.find_by_name('Cody')
-@project.users << User.find_by_name('Michael')
+#@project.users << User.find_by_name('David')
+#@project.users << User.find_by_name('Matt')
+#@project.users << User.find_by_name('Becca')
+#@project.users << User.find_by_name('Cody')
+#@project.users << User.find_by_name('Michael')
 
 @sprint = Sprint.find(1)
 @sprint.stories << Story.find(1)

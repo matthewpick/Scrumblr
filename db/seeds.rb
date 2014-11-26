@@ -7,9 +7,9 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 # after finding your uid from github, fill it in under users
-users = [{:name => 'David', :provider => 'github', :uid => '', :session_token => ''}, {:name => 'Matt', :provider => 'github', :uid => '', :session_token => ''}, 
-         {:name => 'Cody', :provider => 'github', :uid => '', :session_token => ''}, {:name => 'Becca', :provider => 'github', :uid => '', :session_token => ''}, 
-         {:name => 'Michael', :provider => 'github', :uid => '', :session_token => ''}]
+users = [{:name => 'David', :provider => 'github', :uid => '8689486', :session_token => '1'}, {:name => 'Matt', :provider => 'github', :uid => '5581526', :session_token => '2'},
+         {:name => 'Cody', :provider => 'github', :uid => '4641709', :session_token => '3'}, {:name => 'Becca', :provider => 'github', :uid => '4742605', :session_token => '4'},
+         {:name => 'Michael', :provider => 'github', :uid => '8717464', :session_token => '5'}]
          
 projects = [{:project_name => 'Scrumblr', :project_description => 'hey look! our SELT project!', :project_github => 'git@github.com/test'},
 						{:project_name => 'Bumblr', :project_description => 'something', :project_github => 'git@github.com/test'}]
@@ -42,13 +42,17 @@ tasks.each do |task|
   Task.create!(task)
 end
 
-@user = User.find_by_uid()  # put your uid here
-@user.projects << Project.find(1)
-@user.projects << Project.find(2)
+# Assign dummmy projects to every user
+User.all do |user|
+	user.projects << Project.find(1)
+	user.projects << Project.find(2)
+end
+
 
 @project = Project.find(1)
 @project.sprints << Sprint.find(1)
 @project.sprints << Sprint.find(2)
+@project.users << User.find_by_name('David')
 @project.users << User.find_by_name('Matt')
 @project.users << User.find_by_name('Becca')
 @project.users << User.find_by_name('Cody')

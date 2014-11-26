@@ -23,6 +23,33 @@
                   Github Repo: #{p.project_github}
                 %p
                   Average Velocity: #{p.average_velocity}
+                %div
+                  %span.btn-group
+                    %button.btn.btn-default.dropdown-toggle{:type => "button", "data-toggle" => "dropdown", "aria-expanded" => "false"}
+                      Team members
+                      %span.caret
+                    %ul#menu.dropdown-menu{:role => "menu"}
+                      -@teams[p.id].each do |member|
+                        %li{:role => "presentation"}
+                          %a{:role => "menuitem", :tabindex => "-1", :href => "#"}
+                            #{member.name}
+                      %li.divider{:role => "presentation"}
+                      %li{:role => "presentation"}
+                        %a{:role => "menuitem", :tabindex => "-1", :href => "#", "ng-click" => "projects.showInviteForm()"}
+                          Invite User
+                  %span.button.btn.btn-primary.pull-right
+                    Edit Project
+                %p
+                  =form_tag users_invite_path :method => :post do
+                    %div.input-group{"ng-show" => "inviteVisible"}
+                      %span.input-group-btn
+                        %button.btn.btn-default{:type => "submit"}
+                          Invite
+                      %input.form-control{:placeholder => "User Email", :type => "email", :name => "user_email"}
+                      %span.input-group-btn
+                        %button.btn.btn-default{:type => "button", "ng-click" => "projects.hideInviteForm()"}
+                          %span.glyphicon.glyphicon-remove
+                  
         %div.panel.panel-default
           %div#newProject.panel-heading{:role => "tab"}
             %h4.panel-title

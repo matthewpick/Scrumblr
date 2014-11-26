@@ -21,20 +21,13 @@ class ProjectsController < ApplicationController
 
   def index
     if current_user
-      @collaborators = {}
-      projects = @current_user.projects
+      @teams = {}
+      projects = current_user.projects
       
       projects.each do |project|
-        team = []
-        project.users.each do |user|
-          if user.id != current_user.id
-            team << team
-          end 
-        end
-        @collaborators[project.id] = team 
+        @teams[project.id] = project.get_team(current_user.id)
       end
-    end
-    
+    end    
   end
 
   def show

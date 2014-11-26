@@ -6,6 +6,10 @@ describe Project do
       #load Rails.root + 'db/seeds.rb'
       @fake_hash = Hash[:project_name => 'Dummy Name', :project_description => 'Description', :project_github => 'git@github/dummy']
       @fake_project = Project.new(@fake_hash)
+      @fake_user = User.create!({:name => 'David', :provider => 'github', :uid => '', :session_token => ''})
+      @fake_user2 = User.create!({:name => 'Jon', :provider => 'github', :uid => '', :session_token => ''})
+      @fake_project.users << @fake_user
+      @fake_project.users << @fake_user2
       @fake_sprint = Sprint.new Hash[:sprint_start_date => Date.new(2014,11,7), :sprint_end_date => Date.new(2014,11,21)]
       @fake_sprint2 = Sprint.new Hash[:sprint_start_date => Date.new(2014,11,22), :sprint_end_date => Date.new(2014,11,29)]
       @fake_project.sprints << @fake_sprint
@@ -44,6 +48,18 @@ describe Project do
      it 'should return the average of velocities across all sprints' do
        expect(@fake_project.sprints.count).to eq(2)
        expect(@fake_project.average_velocity).to eq(1.5)
+     end
+   end
+   
+   describe 'getting the project team' do
+     it 'should return an array of all my team members on this project' do
+       expect(@fake_project.get_team(User.find_by_name('David').id)).to eq [@fake_user2]
+     end
+   end
+   
+   describe 'counting the discussions for a project' do
+     it 'should return the number of tasks needing discussion within the project' do
+       expect(@fake_project.count_discussions).to eq(2)
      end
    end
 end

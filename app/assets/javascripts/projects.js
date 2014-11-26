@@ -2,6 +2,7 @@ var app = angular.module('ScrumblrApp');
 
 app.controller('ProjectsController', function($scope, $window, ProjectsService) {
   $scope.sprintsVisible = false;
+  $scope.inviteVisible = false;
   $scope.lastOpened = 0;
   $scope.sprints = [];
   $scope.token = $('meta[name="csrf-token"]').attr('content');
@@ -10,6 +11,14 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
     $scope.sprintsVisible = false;
     $scope.lastOpened = 0;
     $scope.sprints = [];
+  };
+  
+  this.showInviteForm = function showInviteForm() {
+    $scope.inviteVisible = true;
+  };
+  
+  this.hideInviteForm = function hideInviteForm() {
+    $scope.inviteVisible = false;
   };
   
   this.showSprints = function showSprints(project_id) {  
@@ -27,7 +36,9 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
       
       $scope.sprintsVisible = true;
       $scope.lastOpened = project_id;
-    }       
+    }  
+    
+    $scope.inviteVisible = false;     
   }; 
   
   this.validate = function validate() {

@@ -16,4 +16,8 @@ class UsersController < ApplicationController
 
   def show
   end
+  
+  def invite
+    redirect_to projects_path
+  end
 end

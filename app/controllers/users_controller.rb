@@ -35,4 +35,18 @@ class UsersController < ApplicationController
     
     redirect_to projects_path
   end
+  
+  def respond
+    if current_user
+      answer = params[:answer].to_i
+      project_id = params[:project_id]
+      
+      if answer == 1
+        current_user.projects << Project.find(project_id)
+      end
+      
+      current_user.invites.delete(Project.find(project_id))
+      redirect_to projects_path
+    end
+  end
 end

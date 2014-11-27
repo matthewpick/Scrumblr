@@ -12,7 +12,9 @@ users = [{:name => 'David', :provider => 'github', :uid => '8689486', :session_t
          {:name => 'Michael', :provider => 'github', :uid => '8717464', :session_token => '5'}]
          
 projects = [{:project_name => 'Scrumblr', :project_description => 'hey look! our SELT project!', :project_github => 'git@github.com/test'},
-						{:project_name => 'Bumblr', :project_description => 'something', :project_github => 'git@github.com/test'}]
+						{:project_name => 'Bumblr', :project_description => 'something', :project_github => 'git@github.com/test'}, 
+						{:project_name => 'Crumblr', :project_description => 'something', :project_github => 'git@github.com/test'},
+						{:project_name => 'Chumblr', :project_description => 'something', :project_github => 'git@github.com/test'}]
 						
 sprints = [{:sprint_start_date => Date.new(2014,11,17), :sprint_end_date => Date.new(2014,11,24)},{:sprint_start_date => Date.new(2014,11,24), :sprint_end_date => Date.new(2014,11,30)}]
 
@@ -52,11 +54,6 @@ end
 @project = Project.find(1)
 @project.sprints << Sprint.find(1)
 @project.sprints << Sprint.find(2)
-#@project.users << User.find_by_name('David')
-#@project.users << User.find_by_name('Matt')
-#@project.users << User.find_by_name('Becca')
-#@project.users << User.find_by_name('Cody')
-#@project.users << User.find_by_name('Michael')
 
 @sprint = Sprint.find(1)
 @sprint.stories << Story.find(1)
@@ -65,3 +62,10 @@ end
 @story = Story.find(1)
 @story.tasks << Task.find(1)
 @story.tasks << Task.find(2)
+
+# Invite all users to dummy projects
+User.all.each do |user|
+  user.invites << Project.find(3)
+  user.invites << Project.find(4)
+end
+

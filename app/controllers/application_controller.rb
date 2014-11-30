@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   	#@current_user ||= session[:session_token] && User.find_by_session_token(session[:session_token])
   end
 
-  private
+  #private
   def current_user
     @current_user ||= User.find_by_session_token(session[:session_token]) if session[:session_token]
   end

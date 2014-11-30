@@ -22,9 +22,9 @@ class ProjectsController < ApplicationController
   def index
     if current_user
       @teams = {}
-      projects = current_user.projects
+      @projects = current_user.projects
       
-      projects.each do |project|
+      @projects.each do |project|
         @teams[project.id] = project.get_team(current_user.id)
       end
     end    

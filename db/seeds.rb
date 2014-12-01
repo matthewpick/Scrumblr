@@ -22,7 +22,10 @@ stories = [{:story_name => 'test', :story_description => 'this is a test', :stor
            {:story_name => 'test2', :story_description => 'this is a test2', :story_points => 1, :story_status => 'started'}]
            
 tasks = [{:title => 'task', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => false},
-         {:title => 'task2', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => true}]
+         {:title => 'task2', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => true},
+	 {:title => 'task3', :points => 1, :status => 'in_review', :description => 'this is a test', :needs_discussion => true},
+	 {:title => 'task4', :points => 1, :status => 'backlog', :description => 'this is a test', :needs_discussion => true},
+         {:title => 'task5', :points => 1, :status => 'in_progress', :description => 'this is a test', :needs_discussion => true}]
 
 users.each do |user|
 	User.create!(user)
@@ -63,9 +66,16 @@ end
 @story.tasks << Task.find(1)
 @story.tasks << Task.find(2)
 
+<<<<<<< HEAD
 # Invite all users to dummy projects
 User.all.each do |user|
   user.invites << Project.find(3)
   user.invites << Project.find(4)
 end
 
+=======
+@story = Story.find(2)
+@story.tasks << Task.find(3)
+@story.tasks << Task.find(4)
+@story.tasks << Task.find(5)
+>>>>>>> Scrumboard

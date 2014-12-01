@@ -85,11 +85,17 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
     return true;
   };
   
+  this.viewScrumboard = function viewScrumboard(project_id, sprint_id) {
+     //ProjectsService.getScrumboard(project_id, sprint_id);
+     $window.location.href = "/projects/" + project_id.toString() + "/sprints/" + sprint_id.toString() + "/scrumboard"
+  };
+  
 });
 
 app.service('ProjectsService', function($http, $q) {
   return({getSprints: getSprints, 
-          createSprint: createSprint});
+          createSprint: createSprint,
+          getScrumboard: getScrumboard});
   
   function getSprints(project_id) {
     var request = $http({
@@ -112,6 +118,14 @@ app.service('ProjectsService', function($http, $q) {
     });
     
     return(request.then(handleCreateSuccess, handleCreateError));
+  }
+  
+  function getScrumboard(project_id, sprint_id) {
+    var request = $http({
+      method: "get",
+      url: "/projects/" + project_id.toString() + "/sprints/" + sprint_id.toString() + "/scrumboard",
+      timeout: 5000
+    });
   }
   
   function handleSuccess(response) {

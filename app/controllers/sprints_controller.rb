@@ -81,5 +81,6 @@ class SprintsController < ApplicationController
     end
     @sprint_list = Sprint.find_all_by_project_id(params[:project_id])
     @scrumboard = { :sprint => @sprint, :sprint_list => @sprint_list}
+    
   end  
 end

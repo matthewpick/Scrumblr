@@ -88,7 +88,7 @@
           %li.list-group-item.active
             Sprints
           %li.list-group-item{"ng-repeat" => "sprint in sprints"}
-            %button.btn.btn-link 
+            %button.btn.btn-link{"ng-click" => "projects.viewScrumboard(sprint.project_id, sprint.id)"}
               {{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
             %span.badge.pull-right
               {{sprint.discussions}}

@@ -4,6 +4,7 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
   $scope.sprintsVisible = false;
   $scope.inviteVisible = false;
   $scope.lastOpened = 0;
+  $scope.project_n = "";
   $scope.sprints = [];
   
   this.hideAll = function hideAll() {
@@ -45,7 +46,7 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
     {
       $window.alert("Start date must be before end date");
     }
-    else if(!this.validate())
+    else if(!this.validateSprint())
     {
       $window.alert("Can't create overlapping sprints");
     }
@@ -61,7 +62,7 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
     };
   };
   
-  this.validate = function validate() {
+  this.validateSprint = function validateSprint() {
     for(i=0;i<$scope.sprints.length;i++)
     {
       if(($scope.start_date >= $scope.sprints[i].sprint_start_date && $scope.start_date <= $scope.sprints[i].sprint_end_date) ||
@@ -73,6 +74,17 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
     
     return true;
   };
+  
+  this.validateProject = function validateProject() {
+    if($scope.project_n == "")
+    {
+      $window.alert("Must specify project name");
+      return false;
+    } 
+    
+    return true;
+  };
+  
 });
 
 app.service('ProjectsService', function($http, $q) {

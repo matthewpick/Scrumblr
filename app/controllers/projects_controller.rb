@@ -4,7 +4,14 @@ class ProjectsController < ApplicationController
 	def create
 		project = params[:project]
 		if current_user
-		  current_user.projects << Project.create!(project)
+		  @new_project = Project.new(project)
+		  
+		  if @new_project.valid?
+		    current_user.projects << Project.create!(project)
+		    flash[:notice] = "#{@new_project.project_name} successfully created"
+		  else
+		    flash[:notice] = "Project name can't be blank"
+		  end
 		end
 		
 	 redirect_to projects_path

@@ -69,5 +69,17 @@ class SprintsController < ApplicationController
     end
     
   end
-  
+
+  def scrumboard
+    #render a view for the scrumboard
+    @sprint = Sprint.find(params[:sprint_id])
+    @sprint.stories.each do |story|
+      @story_tasks = Task.find_all_by_story_id(story.id)
+      @story_tasks.each do |task|
+        story.tasks << task
+      end
+    end
+    @sprint_list = Sprint.find_all_by_project_id(params[:project_id])
+    @scrumboard = { :sprint => @sprint, :sprint_list => @sprint_list}
+  end  
 end

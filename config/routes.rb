@@ -4,7 +4,9 @@ Scrumbler::Application.routes.draw do
   # resources :storys
 
   resources :projects do
-    resources :sprints
+    resources :sprints do
+      get 'scrumboard'
+    end
   end
 
   resources :sprints do

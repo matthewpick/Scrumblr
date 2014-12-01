@@ -66,16 +66,14 @@ end
 @story.tasks << Task.find(1)
 @story.tasks << Task.find(2)
 
-<<<<<<< HEAD
 # Invite all users to dummy projects
 User.all.each do |user|
   user.invites << Project.find(3)
   user.invites << Project.find(4)
 end
 
-=======
 @story = Story.find(2)
 @story.tasks << Task.find(3)
 @story.tasks << Task.find(4)
 @story.tasks << Task.find(5)
->>>>>>> Scrumboard
+

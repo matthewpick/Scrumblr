@@ -67,18 +67,20 @@
                 %span.glyphicon.glyphicon-plus.pull-right
           %div#collapseNewProject.panel-collapse.collapse{:role => "tabpanel", "aria-labelledby" => "newProject"}
             %div.panel-body
-              =form_tag projects_path :method => :post do
+              =form_tag projects_path, :method => :post, :name => "projectForm", :novalidate => "true" do
                 %div.form-group
-                  %label{:for => "project_name"} Name
-                  %input.form-control{:placeholder => "Project name", :type => "name", :id => "project_name", :name => "project[project_name]", "ng-model" => "project_n"}    
+                  %label{:for => "project_name"} Name*
+                  %input.form-control{:placeholder => "Project name", :type => "name", :id => "project_name", :name => "project[project_name]", "ng-model" => "project_n", :required => "true"}   
                 %div.form-group
                   %label Description
                   %textarea.form-control{:placeholder => "Project description", :rows => "3", :name => "project[project_description]"}  
                 %div.form-group
                   %label Github Repository
                   %input.form-control{:placeholder => "Project repository", :type => "text", :name => "project[project_github]"} 	
-                %button.btn.btn-primary{:type => "submit"}
+                %button.btn.btn-primary{:type => "submit", "ng-disabled" => "projectForm.$invalid"}
                   Create
+                %p.help-block{"ng-hide" => "projectForm.$valid"}
+                  *required
   
     %span.col-md-6.pull-right{"ng-show" => "sprintsVisible"}
       %div.well
@@ -101,17 +103,19 @@
                       %span.glyphicon.glyphicon-plus.pull-right
                 %div#collapseForm.panel-collapse.collapse{:role => "tabpanel", "aria-labelledby" => "#formHeading"}
                   %div.panel-body
-                    %form{:role => "form"}
+                    %form{:role => "form", :name => "sprintForm"}
                       %div.form-group
                         %label{:for => "startDate"}
-                          Sprint Start Date
-                        %input#startDate.form-control{:type => "date", "ng-model" => "start_date"}
+                          Sprint Start Date*
+                        %input#startDate.form-control{:type => "date", "ng-model" => "start_date", :required => "true", :name => "start_date"}
                       %div.form-group
                         %label{:for => "endDate"}
-                          Sprint End Date
-                        %input#endDate.form-control{:type => "date", "ng-model" => "end_date"}
-                      %button.btn.btn-primary{:type => "submit", "ng-click" => "projects.createSprint()"}
+                          Sprint End Date*
+                        %input#endDate.form-control{:type => "date", "ng-model" => "end_date", :required => "true", :name => "end_date"}
+                      %button.btn.btn-primary{:type => "submit", "ng-click" => "projects.createSprint()", "ng-disabled" => "sprintForm.$invalid"}
                         Create
+                      %p.help-block{"ng-hide" => "sprintForm.$valid"}
+                        *required
         
 =javascript_include_tag 'projects'
 

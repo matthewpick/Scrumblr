@@ -1,0 +1,82 @@
+-# in app/views/sprints/scrumboard.html.haml
+
+.col-sm-12
+  .btn-group
+    %button.btn.btn-default
+      %strong Sprints
+    %button.btn.btn-default.dropdown-toggle{'data-toggle' =>"dropdown", 'aria-expanded' =>"false"}
+      %span.caret
+      %span.sr-only Toggle Dropdown
+    %ul.dropdown-menu
+      - @scrumboard[:sprint_list].each do |sprint|
+        %li= link_to "#{sprint.sprint_start_date}", project_sprint_scrumboard_path(sprint.project_id,sprint)
+
+.col-sm-12
+  .col-sm-1
+    %strong Story
+  .col-sm-3
+    %strong Backlog
+  .col-sm-3
+    %strong In Progress
+  .col-sm-3
+    %strong In Review
+  .col-sm-2
+    %strong Complete
+#sprint.col-sm-12
+  - @scrumboard[:sprint].stories.each do |story|
+    .form-group.col-sm-12
+      .col-sm-1
+        %h5= story.story_name
+      -# story.tasks.each do |task|
+      .col-sm-3
+        - story.tasks.each do |task|
+          - if task.status=='backlog'
+            .panel.panel-default
+              .panel-heading
+                - if task.needs_discussion
+                  %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                =task.title
+              .panel-body
+                =task.description
+              .panel-footer
+                %span.glyphicon.glyphicon-chevron-left
+                %span.glyphicon.glyphicon-chevron-right.pull-right
+      .col-sm-3
+        - story.tasks.each do |task|
+          - if task.status=='in_progress'
+            .panel.panel-info
+              .panel-heading
+                - if task.needs_discussion
+                  %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                =task.title
+              .panel-body
+                =task.description
+              .panel-footer
+                %span.glyphicon.glyphicon-chevron-left
+                %span.glyphicon.glyphicon-chevron-right.pull-right
+      .col-sm-3
+        - story.tasks.each do |task|
+          - if task.status=='in_review'
+            .panel.panel-warning
+              .panel-heading
+                - if task.needs_discussion
+                  %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                =task.title
+              .panel-body
+                =task.description
+              .panel-footer
+                %span.glyphicon.glyphicon-chevron-left
+                %span.glyphicon.glyphicon-chevron-right.pull-right
+      .col-sm-2
+        - story.tasks.each do |task|
+          - if task.status=='completed'
+            .panel.panel-success
+              .panel-heading
+                - if task.needs_discussion
+                  %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                =task.title
+              .panel-body
+                =task.description
+              .panel-footer
+                %span.glyphicon.glyphicon-chevron-left
+                %span.glyphicon.glyphicon-chevron-right.pull-right

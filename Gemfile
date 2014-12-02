@@ -30,6 +30,7 @@ group :assets do
 end
 
 gem 'angularjs-rails', '~> 1.2.26'
+gem 'angular-ui-bootstrap-rails'
 gem 'jquery-rails'
 gem 'haml'
 

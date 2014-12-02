@@ -1,4 +1,4 @@
 /**
  * Created by Cody on 11/13/2014.
  */
-angular.module('ScrumblrApp', ['ngAnimate']);
+angular.module('ScrumblrApp', ['ngAnimate', 'ui.bootstrap']);

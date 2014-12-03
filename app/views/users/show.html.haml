@@ -2,6 +2,32 @@
 
 - if current_user
   %div.col-md-6
+    %h2 User Info
+    %div.col-md-6
+      %div.form-horizontal
+        %img.img-thumbnail{:src => current_user.image_url}
+        %div.col-md-6
+          %div.form-group
+            %label.col-sm-2
+              Name
+            %div.col-sm-10
+              #{current_user.name}
+          %div.form-group
+            %label.col-sm-2
+              Github Username
+            %div.col-sm-10
+              #{current_user.github_username}
+          %div.form-group
+            %label.col-sm-2
+              UID
+            %div.col-sm-10
+              #{current_user.uid}
+          %div.form-group
+            %label.col-sm-2
+              E-Mail
+            %div.col-sm-10
+              #{current_user.email}
+
     %h2 Pending Invites
     %div{"ng-controller" => "UsersController as users"}
       %div#invitesAccordian.panel-group{:role => "tablist", "aria-multiselectable" => "true"}
@@ -35,5 +61,5 @@
                     =form_tag "/users/#{invite.id}/respond/0", :method => :post do
                       %button.btn.btn-link{:type => "submit"}
                         Decline
-                      
+
 =javascript_include_tag 'users'

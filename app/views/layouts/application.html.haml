@@ -18,6 +18,8 @@
             =flash[:notice]
         - if current_user
           %p.welcome! You are logged in via #{current_user.provider} as #{current_user.name}
+          %a.btn.btn-primary{:href => '/projects'}
+            %span Projects
           %a.btn.btn-primary{:href => user_path(current_user)}
             %span View Profile
           %a.btn.btn-primary{:href => signout_path}

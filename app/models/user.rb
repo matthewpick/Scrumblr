@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :name, :provider, :uid, :email, :session_token, :user_velocity
+  attr_accessible :name, :provider, :uid, :email, :image_url, :github_url, :session_token, :user_velocity
 
   has_and_belongs_to_many :stories
   has_and_belongs_to_many :projects
@@ -19,13 +19,7 @@ class User < ActiveRecord::Base
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.name = auth['info']['name']
-      user.email = auth['info']['email']
       user.session_token = SecureRandom.urlsafe_base64
-
-      puts 'User...'
-      puts user.inspect
-      puts 'Auth...'
-      puts auth.inspect
     end
   end
 

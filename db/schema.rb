@@ -71,12 +71,13 @@ ActiveRecord::Schema.define(:version => 20141126220638) do
     t.string   "provider"
     t.string   "uid"
     t.string   "email"
+    t.string   "github_username"
     t.string   "image_url"
     t.string   "github_url"
     t.string   "session_token"
     t.integer  "user_velocity"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
 end

@@ -5,6 +5,7 @@ class CreateUsers < ActiveRecord::Migration
   		t.string 'provider'
   		t.string 'uid'
   		t.string 'email'
+			t.string 'github_username'
 			t.string 'image_url'
 			t.string 'github_url'
 			t.string 'session_token'

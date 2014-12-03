@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  attr_accessible :name, :provider, :uid, :email, :image_url, :github_url, :session_token, :user_velocity
+  attr_accessible :name, :provider, :uid, :email, :github_username, :image_url, :github_url, :session_token, :user_velocity
 
   has_and_belongs_to_many :stories
   has_and_belongs_to_many :projects

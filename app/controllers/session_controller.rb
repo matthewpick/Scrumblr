@@ -10,6 +10,7 @@ class SessionController < ApplicationController
     # Pull info from github every time and check for changes with DB (sync function)
     user.name = auth['info']['name']
     user.email = auth['info']['email']
+    user.github_username = auth['extra']['raw_info']['login']
     user.image_url = auth['info']['image']
     user.github_url = auth['extra']['raw_info']['html_url']
     user.save!

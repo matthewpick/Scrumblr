@@ -1,6 +1,6 @@
 var app = angular.module('ScrumblrApp');
 
-app.controller('ProjectsController', function($scope, $window, ProjectsService) {
+app.controller('ProjectsController', ["$scope","$window", "ProjectsService", function($scope, $window, ProjectsService) {
   $scope.sprintsVisible = false;
   $scope.inviteVisible = false;
   $scope.lastOpened = 0;
@@ -90,9 +90,9 @@ app.controller('ProjectsController', function($scope, $window, ProjectsService) 
      $window.location.href = "/projects/" + project_id.toString() + "/sprints/" + sprint_id.toString() + "/scrumboard"
   };
   
-});
+}]);
 
-app.service('ProjectsService', function($http, $q) {
+app.service('ProjectsService', ["$http", "$q", function($http, $q) {
   return({getSprints: getSprints, 
           createSprint: createSprint,
           getScrumboard: getScrumboard});
@@ -144,4 +144,4 @@ app.service('ProjectsService', function($http, $q) {
   
   }
   
-});
+}]);

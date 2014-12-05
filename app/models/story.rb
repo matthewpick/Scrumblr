@@ -30,6 +30,28 @@ class Story < ActiveRecord::Base
     
     return points
   end
+  
+  def completed?
+    tasks.each do |task|
+      if !task.completed?
+        return false
+      end
+    end
+    
+    return true
+  end
+  
+  def count_completed_tasks
+    completed = 0
+    
+    tasks.each do |task|
+      if task.completed?
+        completed += 1
+      end
+    end
+    
+    return completed
+  end
 
   validates :story_name, :presence => true
 end

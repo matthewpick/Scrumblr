@@ -19,8 +19,8 @@ class Sprint < ActiveRecord::Base
 	def calculate_velocity
 		velocity = 0	
 			
-		stories.each do |s|
-			velocity = velocity + s.calculate_points
+		stories.each do |story|
+			velocity = velocity + story.calculate_points
 		end
 		
 		return velocity
@@ -34,6 +34,38 @@ class Sprint < ActiveRecord::Base
 	  end
 	  
 	  return discussions
+	end
+	
+	def count_tasks
+	  total = 0
+	  
+	  stories.each do |story|
+	    total += story.tasks.count
+	  end
+	  
+	  return total
+	end
+	
+	def count_completed_stories
+	  completed = 0
+	  
+	  stories.each do |story|
+	    if story.completed?
+	      completed += 1
+	    end
+	  end
+	  
+	  return completed
+	end
+	
+	def count_completed_tasks
+	  completed = 0
+	  
+	  stories.each do |story|
+	    completed += story.count_completed_tasks
+	  end
+	  
+	  return completed
 	end
 	
 	def start_date_before_end_date

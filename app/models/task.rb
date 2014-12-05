@@ -10,4 +10,8 @@ class Task < ActiveRecord::Base
   validates :title, :presence => true
   validates :points, :inclusion => {:in => 1..5}
   validates :status, :inclusion => {:in => Task.all_status}
+  
+  def completed?
+    return status == 'completed'
+  end
 end

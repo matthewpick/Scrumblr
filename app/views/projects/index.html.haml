@@ -82,16 +82,43 @@
                 %p.help-block{"ng-hide" => "projectForm.$valid"}
                   *required
   
-    %span.col-md-6.pull-right{"ng-show" => "sprintsVisible"}
+    %span.col-md-6{"ng-show" => "sprintsVisible"}
       %div.well
         %ul.list-group
           %li.list-group-item.active
             Sprints
           %li.list-group-item{"ng-repeat" => "sprint in sprints"}
-            %button.btn.btn-link{"ng-click" => "projects.viewScrumboard(sprint.project_id, sprint.id)"}
-              {{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
-            %span.badge.pull-right
-              {{sprint.discussions}}
+            %div.panel.panel-default
+              %div.panel-heading
+                %h4.panel-title
+                  %a{"ng-click" => "projects.viewScrumboard(sprint.project_id, sprint.id)", :href => "#"}
+                    {{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
+                    %span.badge.pull-right
+                      {{sprint.discussions}}
+              %div.panel-body
+                %span.p
+                  %u
+                    %b At a glance
+                %span.p.pull-right
+                  Veloctiy: {{sprint.velocity}}
+                %table
+                  %tr
+                    %th Total Stories
+                    %th Completed
+                  %tr
+                    %td {{sprint.story_total}}
+                    %td {{sprint.stories_completed}}
+                %table
+                  %tr
+                    %th Total Tasks
+                    %th Completed
+                  %tr
+                    %td {{sprint.task_total}}
+                    %td {{sprint.tasks_completed}}
+            -#%button.btn.btn-link{"ng-click" => "projects.viewScrumboard(sprint.project_id, sprint.id)"}
+              -#{{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
+            -#%span.badge.pull-right
+              -#{{sprint.discussions}}
           %li.list-group-item
             %div#form.panel-group{:role => "tablist", "aria-multiselectable" => "true"}
               %div.panel.panel-default

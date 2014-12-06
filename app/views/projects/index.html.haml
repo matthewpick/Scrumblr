@@ -26,7 +26,9 @@
                 %p
                   Github Repo: #{p.project_github}
                 %p
-                  Average Velocity: #{p.average_velocity}
+                  Average Sprint Velocity: #{p.average_velocity}
+                %p 
+                  My Total Velocity: #{@velocities[p.id]}
                 %div
                   %span.btn-group
                     %button.btn.btn-default.dropdown-toggle{:type => "button", "data-toggle" => "dropdown", "aria-expanded" => "false"}
@@ -45,8 +47,9 @@
                       %li{:role => "presentation"}
                         %a{:role => "menuitem", :tabindex => "-1", :href => "#", "ng-click" => "projects.showInviteForm()"}
                           Invite User
-                  %span.button.btn.btn-primary.pull-right
-                    Edit Project
+                  %span
+                    %a.btn.btn-primary.pull-right{:type => "button", :href => "/projects/#{p.id}/stories"}
+                      My Stories
                 %p
                   =form_tag "users/invite/#{p.id}", :method => :post do
                     %div.input-group{"ng-show" => "inviteVisible"}
@@ -96,25 +99,17 @@
                     %span.badge.pull-right
                       {{sprint.discussions}}
               %div.panel-body
-                %span.p
+                %p
                   %u
                     %b At a glance
                 %span.p.pull-right
                   Veloctiy: {{sprint.velocity}}
-                %table
-                  %tr
-                    %th Total Stories
-                    %th Completed
-                  %tr
-                    %td {{sprint.story_total}}
-                    %td {{sprint.stories_completed}}
-                %table
-                  %tr
-                    %th Total Tasks
-                    %th Completed
-                  %tr
-                    %td {{sprint.task_total}}
-                    %td {{sprint.tasks_completed}}
+                %p
+                  %i Stories (total/completed)
+                  %br {{sprint.story_total}}/{{sprint.stories_completed}}
+                %p
+                  %i Tasks (total/completed)
+                  %br {{sprint.task_total}}/{{sprint.tasks_completed}}
             -#%button.btn.btn-link{"ng-click" => "projects.viewScrumboard(sprint.project_id, sprint.id)"}
               -#{{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
             -#%span.badge.pull-right

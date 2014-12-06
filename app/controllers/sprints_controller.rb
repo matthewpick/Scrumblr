@@ -51,14 +51,6 @@ class SprintsController < ApplicationController
   end
 
   def show
-=begin
-  	 show a particular sprint -- render scrumboard view
-  	 data scrumboard will need:
-  	 the current project's title
-  	 all the sprints for the current project
-  	 all the stories for the selected sprint
-  	 all the tasks for each story
-=end
     sprint_id = params[:id]
     @current_sprint = Sprint.find(sprint_id)
     @stories = @current_sprint.stories

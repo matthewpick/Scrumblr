@@ -1,0 +1,14 @@
+-# in app/views/storys/my_project_stories
+
+-if current_user
+  %h2 My Stories in #{@project_name}
+  %div.col-md-6
+    %div.well
+      %ul.list-group
+        -@stories.each do |story|
+          %li.list-group-item
+            =story.story_name
+            %a.button.btn.btn-link.pull-right{:href => project_sprint_scrumboard_path(story.project_id, story.sprints.first)}
+              View Story
+        
+  

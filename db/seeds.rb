@@ -47,16 +47,19 @@ tasks.each do |task|
   Task.create!(task)
 end
 
-# Assign dummmy projects to every user
+# Assign dummmy projects/stories to every user
 User.all.each do |user|
 	user.projects << Project.find(1)
 	user.projects << Project.find(2)
+	user.stories << Story.find(1)
+	user.stories << Story.find(2)
 end
 
 
 @project = Project.find(1)
 @project.sprints << Sprint.find(1)
 @project.sprints << Sprint.find(2)
+@project.stories << Story.find(1)
 
 @sprint = Sprint.find(1)
 @sprint.stories << Story.find(1)

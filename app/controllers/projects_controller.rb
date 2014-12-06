@@ -30,9 +30,11 @@ class ProjectsController < ApplicationController
     if current_user
       @teams = {}
       @projects = current_user.projects
+      @velocities = {}
       
       @projects.each do |project|
         @teams[project.id] = project.get_team(current_user.id)
+        @velocities[project.id] = current_user.my_project_velocity(project.id)
       end
     end    
   end
@@ -49,5 +51,12 @@ class ProjectsController < ApplicationController
     end
     
     render :json => @info_array
+  end
+  
+  def my_project_stories
+    if current_user
+      @stories = current_user.my_stories_in_project(params[:project_id])
+      @project_name = Project.find(params[:project_id]).project_name
+    end
   end
 end

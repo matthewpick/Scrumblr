@@ -22,5 +22,20 @@ class User < ActiveRecord::Base
       user.session_token = SecureRandom.urlsafe_base64
     end
   end
+  
+  def my_stories_in_project(project_id)
+    Story.joins(:users, :project).where(projects: {id: project_id}, users: {id: self.id})
+  end
+  
+  def my_project_velocity(project_id)
+    my_velocity = 0
+    my_stories = my_stories_in_project(project_id)
+    
+    my_stories.each do |story|
+      my_velocity += story.calculate_points
+    end
+    
+    return my_velocity
+  end
 
 end

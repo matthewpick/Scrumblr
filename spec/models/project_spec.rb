@@ -5,21 +5,21 @@ describe Project do
    before :each do
       #load Rails.root + 'db/seeds.rb'
       @fake_hash = Hash[:project_name => 'Dummy Name', :project_description => 'Description', :project_github => 'git@github/dummy']
-      @fake_project = Project.new(@fake_hash)
+      @fake_project = Project.create!(@fake_hash)
       @fake_user = User.create!({:name => 'David', :provider => 'github', :uid => '', :session_token => ''})
       @fake_user2 = User.create!({:name => 'Jon', :provider => 'github', :uid => '', :session_token => ''})
       @fake_project.users << @fake_user
       @fake_project.users << @fake_user2
-      @fake_sprint = Sprint.new Hash[:sprint_start_date => Date.new(2014,11,7), :sprint_end_date => Date.new(2014,11,21)]
-      @fake_sprint2 = Sprint.new Hash[:sprint_start_date => Date.new(2014,11,22), :sprint_end_date => Date.new(2014,11,29)]
+      @fake_sprint = Sprint.create! Hash[:sprint_start_date => Date.new(2014,11,7), :sprint_end_date => Date.new(2014,11,21)]
+      @fake_sprint2 = Sprint.create! Hash[:sprint_start_date => Date.new(2014,11,22), :sprint_end_date => Date.new(2014,11,29)]
       @fake_project.sprints << @fake_sprint
       @fake_project.sprints << @fake_sprint2
-      @fake_story = Story.new Hash[:story_name => 'fake', :story_description => 'this is a test', :story_points => 1, :story_status => 'started']
-		  @fake_story2 = Story.new Hash[:story_name => 'fake2', :story_description => 'this is a test', :story_points => 2, :story_status => 'started']
+      @fake_story = Story.create! Hash[:story_name => 'fake', :story_description => 'this is a test', :story_points => 1, :story_status => 'started']
+		  @fake_story2 = Story.create! Hash[:story_name => 'fake2', :story_description => 'this is a test', :story_points => 2, :story_status => 'started']
 		  @fake_sprint.stories << @fake_story
 		  @fake_sprint2.stories << @fake_story2
-		  @fake_task = Task.new Hash[:title => 'task', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => true]
-		  @fake_task2 = Task.new Hash[:title => 'task', :points => 2, :status => 'completed', :description => 'this is a test', :needs_discussion => true]
+		  @fake_task = Task.create! Hash[:title => 'task', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => true]
+		  @fake_task2 = Task.create! Hash[:title => 'task', :points => 2, :status => 'completed', :description => 'this is a test', :needs_discussion => true]
 		  @fake_story.tasks << @fake_task
 		  @fake_story2.tasks << @fake_task2
 		  @fake_project.save

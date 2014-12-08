@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   end
   
   def my_stories_in_project(project_id)
-    Story.joins(:users, :project).where(projects: {id: project_id}, users: {id: self.id})
+    return Story.joins(:users, :project).where(projects: {id: project_id}, users: {id: self.id})
   end
   
   def my_project_velocity(project_id)

@@ -32,6 +32,10 @@ class Story < ActiveRecord::Base
   end
   
   def completed?
+    if tasks.count == 0
+      return false
+    end
+    
     tasks.each do |task|
       if !task.completed?
         return false

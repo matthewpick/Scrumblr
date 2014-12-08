@@ -6,14 +6,14 @@ describe Sprint do
 		@info = Hash[:sprint_start_date => Date.new(2014,11,7), :sprint_end_date => Date.new(2014,11,21)]
 		@fake_sprint = Sprint.new(@info_hash)
 		@info2 = Hash[:sprint_start_date => Date.new(2014,11,7), :sprint_end_date => Date.new(2014,11,6)]
-		@fake_story = Story.new Hash[:story_name => 'fake', :story_description => 'this is a test', :story_points => 1, :story_status => 'started']
-		@fake_story2 = Story.new Hash[:story_name => 'fake2', :story_description => 'this is a test', :story_points => 2, :story_status => 'started']
-		@fake_sprint.stories << @fake_story
-		@fake_sprint.stories << @fake_story2
-		@fake_task = Task.new Hash[:title => 'task', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => true]
-		@fake_task2 = Task.new Hash[:title => 'task', :points => 2, :status => 'completed', :description => 'this is a test', :needs_discussion => true]
+		@fake_story = Story.create Hash[:story_name => 'fake', :story_description => 'this is a test', :story_points => 1, :story_status => 'started']
+		@fake_story2 = Story.create Hash[:story_name => 'fake2', :story_description => 'this is a test', :story_points => 2, :story_status => 'started']
+		@fake_task = Task.create Hash[:title => 'task', :points => 1, :status => 'completed', :description => 'this is a test', :needs_discussion => true]
+		@fake_task2 = Task.create Hash[:title => 'task', :points => 2, :status => 'completed', :description => 'this is a test', :needs_discussion => true]
 		@fake_story.tasks << @fake_task
 		@fake_story.tasks << @fake_task2
+		@fake_sprint.stories << @fake_story
+		@fake_sprint.stories << @fake_story2
 	end
 	
 	describe 'creating a new sprint' do	
@@ -28,7 +28,6 @@ describe Sprint do
 			velocity = @fake_sprint.calculate_velocity
 			expect(velocity).to eq(3)
 		end
-
 	end
 		
 	describe 'adding a story to a sprint' do
@@ -50,4 +49,23 @@ describe Sprint do
 	    expect(Sprint.new(@info2)).to_not be_valid
 	  end
 	end 
+	
+	describe 'calculating the number of tasks within the sprint' do
+	  it 'should return the number of total tasks over all stories in the sprint' do
+	    #expect(@fake_sprint.stories.count).to eq(2)
+	    expect(@fake_sprint.count_tasks).to eq(2)
+	  end
+	end
+	
+	describe 'calculating the number of completed tasks within the sprint' do
+	  it 'should return the number of completed tasks over all stories in the sprint' do
+	    expect(@fake_sprint.count_completed_tasks).to eq(2)
+	  end
+	end
+	
+	describe 'calculating the number of completed stories within the sprint' do
+	  it 'should return the number of completed stories' do
+	    expect(@fake_sprint.count_completed_stories).to eq(1)
+	  end
+	end
 end

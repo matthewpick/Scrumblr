@@ -36,4 +36,19 @@ describe Task  do
       expect(Task.new(@info)).to be_valid
     end
   end
+  
+  describe 'checking to see if the task is completed' do
+    it 'should return true iff the tasks status is completed' do      
+      Task.all_status.each do |status|
+        @fake_task = Task.new Hash[ :title=>'title', :points=>1, :status=> status, :needs_discussion=>false, :description=>'text' ]
+        
+        if status == 'completed'
+          expect(@fake_task.completed?).to eq(true)
+        else
+          expect(@fake_task.completed?).to eq(false)
+        end
+        
+      end
+    end
+  end
 end

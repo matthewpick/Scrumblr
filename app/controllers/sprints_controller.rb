@@ -13,8 +13,9 @@ class SprintsController < ApplicationController
 		@sprints = Project.find(project_id).sprints
 		
 		@sprints.each do |sprint|
-      @info_array << {:id => sprint.id, :project_id => sprint.project_id, :sprint_start_date => sprint.sprint_start_date, 
-                      :sprint_end_date => sprint.sprint_end_date, :discussions => sprint.count_discussions}
+      @info_array << {:id => sprint.id, :project_id => sprint.project_id, :sprint_start_date => sprint.sprint_start_date, :velocity => sprint.calculate_velocity, 
+                      :sprint_end_date => sprint.sprint_end_date, :discussions => sprint.count_discussions, :story_total => sprint.stories.count,
+                      :stories_completed => sprint.count_completed_stories, :task_total => sprint.count_tasks, :tasks_completed => sprint.count_completed_tasks}
     end
     
 		render json: @info_array

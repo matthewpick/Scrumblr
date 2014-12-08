@@ -90,6 +90,21 @@ app.controller('ProjectsController', ["$scope","$window", "ProjectsService", fun
      $window.location.href = "/projects/" + project_id.toString() + "/sprints/" + sprint_id.toString() + "/scrumboard"
   };
   
+  this.dateOpen = function($event, button) {
+    $event.preventDefault();
+    $event.stopPropagation();
+    
+    if(button == 1)
+    {
+      $scope.opened1 = true;
+    }
+    if(button == 2)
+    {
+      $scope.opened2 = true;
+    }
+    
+  };
+  
 }]);
 
 app.service('ProjectsService', ["$http", "$q", function($http, $q) {

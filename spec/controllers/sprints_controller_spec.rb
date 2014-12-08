@@ -21,9 +21,10 @@ describe SprintsController do
     it 'should return an Array containing all the sprints and the number of discussions' do
       post :create, {:project_id => 1, :sprint_info => @info}
       @fake_sprint = Sprint.find(1)
-      expect(assigns(:info_array)).to eq([{"id" => @fake_sprint.id, "project_id" => 1, "sprint_start_date" => @fake_sprint.sprint_start_date, 
-                      "sprint_end_date" => @fake_sprint.sprint_end_date, "discussions" => @fake_sprint.count_discussions}])
-      #expect(response).to eq(:info_array.to_json)
+      expect(assigns(:info_array)).to eq([{"id" => @fake_sprint.id, "project_id" => @fake_sprint.project_id, "sprint_start_date" => @fake_sprint.sprint_start_date, 
+                                           "velocity" => @fake_sprint.calculate_velocity, "sprint_end_date" => @fake_sprint.sprint_end_date, "discussions" => @fake_sprint.count_discussions,
+                                           "story_total" => @fake_sprint.stories.count, "stories_completed" => @fake_sprint.count_completed_stories, "task_total" => @fake_sprint.count_tasks,
+                                           "tasks_completed" => @fake_sprint.count_completed_tasks }])
     end
   end
 =begin  

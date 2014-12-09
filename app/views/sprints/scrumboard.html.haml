@@ -36,11 +36,15 @@
                 - if task.needs_discussion
                   %span.glyphicon.glyphicon-exclamation-sign.text-danger
                 =task.title
+                =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
+                  %span.glyphicon.glyphicon-trash.pull-right
               .panel-body
                 =task.description
               .panel-footer
-                %span.glyphicon.glyphicon-chevron-left
-                %span.glyphicon.glyphicon-chevron-right.pull-right
+                =link_to "/tasks/#{task.id}/moveleft" do
+                  %span.glyphicon.glyphicon-chevron-left
+                =link_to "/tasks/#{task.id}/moveright" do
+                  %span.glyphicon.glyphicon-chevron-right.pull-right
       .col-sm-3
         - story.tasks.each do |task|
           - if task.status=='in_progress'
@@ -49,11 +53,15 @@
                 - if task.needs_discussion
                   %span.glyphicon.glyphicon-exclamation-sign.text-danger
                 =task.title
+                =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
+                  %span.glyphicon.glyphicon-trash.pull-right
               .panel-body
                 =task.description
               .panel-footer
-                %span.glyphicon.glyphicon-chevron-left
-                %span.glyphicon.glyphicon-chevron-right.pull-right
+                =link_to "/tasks/#{task.id}/moveleft" do
+                  %span.glyphicon.glyphicon-chevron-left
+                =link_to "/tasks/#{task.id}/moveright" do
+                  %span.glyphicon.glyphicon-chevron-right.pull-right
       .col-sm-3
         - story.tasks.each do |task|
           - if task.status=='in_review'
@@ -62,11 +70,15 @@
                 - if task.needs_discussion
                   %span.glyphicon.glyphicon-exclamation-sign.text-danger
                 =task.title
+                =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
+                  %span.glyphicon.glyphicon-trash.pull-right
               .panel-body
                 =task.description
               .panel-footer
-                %span.glyphicon.glyphicon-chevron-left
-                %span.glyphicon.glyphicon-chevron-right.pull-right
+                =link_to "/tasks/#{task.id}/moveleft" do
+                  %span.glyphicon.glyphicon-chevron-left
+                =link_to "/tasks/#{task.id}/moveright" do
+                  %span.glyphicon.glyphicon-chevron-right.pull-right
       .col-sm-2
         - story.tasks.each do |task|
           - if task.status=='completed'
@@ -75,8 +87,12 @@
                 - if task.needs_discussion
                   %span.glyphicon.glyphicon-exclamation-sign.text-danger
                 =task.title
+                =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
+                  %span.glyphicon.glyphicon-trash.pull-right
               .panel-body
                 =task.description
               .panel-footer
-                %span.glyphicon.glyphicon-chevron-left
-                %span.glyphicon.glyphicon-chevron-right.pull-right
+                =link_to "/tasks/#{task.id}/moveleft" do
+                  %span.glyphicon.glyphicon-chevron-left
+                =link_to "/tasks/#{task.id}/moveright" do
+                  %span.glyphicon.glyphicon-chevron-right.pull-right

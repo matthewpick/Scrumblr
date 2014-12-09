@@ -19,6 +19,7 @@ Scrumbler::Application.routes.draw do
 
   resources :home, :only => :index
   resources :users, :only => :show
+
   match 'auth/:provider/callback' => 'session#create'
   match '/signout' => 'session#destroy', :as => :signout
   match '/users/invite/:project_id', to: 'users#invite', via: :post
@@ -26,5 +27,6 @@ Scrumbler::Application.routes.draw do
   match '/projects/:project_id/stories' => 'projects#my_project_stories', via: :get
   match '/tasks/:task_id/moveleft' => 'tasks#move_left', via: :get
   match '/tasks/:task_id/moveright' => 'tasks#move_right', via: :get
+  match '/tasks/:task_id' => 'tasks#destroy', via: :delete
   root :to => redirect('/home')
 end

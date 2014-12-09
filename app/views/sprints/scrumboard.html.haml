@@ -36,6 +36,8 @@
                 - if task.needs_discussion
                   %span.glyphicon.glyphicon-exclamation-sign.text-danger
                 =task.title
+                =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
+                  %span.glyphicon.glyphicon-trash.pull-right
               .panel-body
                 =task.description
               .panel-footer
@@ -51,6 +53,8 @@
                 - if task.needs_discussion
                   %span.glyphicon.glyphicon-exclamation-sign.text-danger
                 =task.title
+                =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
+                  %span.glyphicon.glyphicon-trash.pull-right
               .panel-body
                 =task.description
               .panel-footer
@@ -66,6 +70,8 @@
                 - if task.needs_discussion
                   %span.glyphicon.glyphicon-exclamation-sign.text-danger
                 =task.title
+                =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
+                  %span.glyphicon.glyphicon-trash.pull-right
               .panel-body
                 =task.description
               .panel-footer
@@ -81,6 +87,8 @@
                 - if task.needs_discussion
                   %span.glyphicon.glyphicon-exclamation-sign.text-danger
                 =task.title
+                =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
+                  %span.glyphicon.glyphicon-trash.pull-right
               .panel-body
                 =task.description
               .panel-footer

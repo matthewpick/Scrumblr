@@ -49,7 +49,7 @@ class Project < ActiveRecord::Base
       average = average.to_f / sprints.count
     end
     
-    return average
+    return average.round(2)
    end
    
    def get_team(my_id)

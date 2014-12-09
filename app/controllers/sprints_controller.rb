@@ -2,23 +2,23 @@ class SprintsController < ApplicationController
   #before_filter :set_current_user
   
 	def create
-		# updates the DB with a new sprint
-		# responds to an AJAX request?
-		project_id = params[:project_id]
-		sprint_info = params[:sprint_info]
-		@sprint = Sprint.create!(sprint_info)
-		Project.find(project_id).sprints << @sprint
+		project = Project.find(params[:project_id])
+		@sprint = Sprint.create!(params[:sprint_info])
+		project.sprints << @sprint
 		
-		@info_array = []
-		@sprints = Project.find(project_id).sprints
+		@info = {}
+		@sprints = project.sprints
+		@sprint_info = []
 		
 		@sprints.each do |sprint|
-      @info_array << {:id => sprint.id, :project_id => sprint.project_id, :sprint_start_date => sprint.sprint_start_date, :velocity => sprint.calculate_velocity, 
-                      :sprint_end_date => sprint.sprint_end_date, :discussions => sprint.count_discussions, :story_total => sprint.stories.count,
-                      :stories_completed => sprint.count_completed_stories, :task_total => sprint.count_tasks, :tasks_completed => sprint.count_completed_tasks}
+      @sprint_info << {:id => sprint.id, :project_id => sprint.project_id, :sprint_start_date => sprint.sprint_start_date, :velocity => sprint.calculate_velocity, 
+                       :sprint_end_date => sprint.sprint_end_date, :discussions => sprint.count_discussions, :story_total => sprint.stories.count,
+                       :stories_completed => sprint.count_completed_stories, :task_total => sprint.count_tasks, :tasks_completed => sprint.count_completed_tasks}
     end
     
-		render json: @info_array
+    @info[:sprint_info] = @sprint_info
+    @info[:average_velocity] = project.average_velocity
+		render json: @info
 	end
 	
 	def new
@@ -41,14 +41,7 @@ class SprintsController < ApplicationController
   end
 
   def index
-=begin
-    project_id = params[:project_id]
-    @sprints = Project.find(project_id).sprints
-    
-    respond_to do |format|
-      format.json {render json: @sprints and return}
-    end 
-=end   
+   
   end
 
   def show

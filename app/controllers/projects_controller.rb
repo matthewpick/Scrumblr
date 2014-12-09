@@ -41,16 +41,20 @@ class ProjectsController < ApplicationController
 
   def show
     project_id = params[:id]
-    @info_array = []
-    @sprints = Project.find(project_id).sprints
+    project = Project.find(project_id)
+    @info = {}
+    @sprints = project.sprints
+    @sprint_info = []
     
     @sprints.each do |sprint|
-      @info_array << {:id => sprint.id, :project_id => sprint.project_id, :sprint_start_date => sprint.sprint_start_date, :velocity => sprint.calculate_velocity, 
-                      :sprint_end_date => sprint.sprint_end_date, :discussions => sprint.count_discussions, :story_total => sprint.stories.count,
-                      :stories_completed => sprint.count_completed_stories, :task_total => sprint.count_tasks, :tasks_completed => sprint.count_completed_tasks}
+      @sprint_info << {:id => sprint.id, :project_id => sprint.project_id, :sprint_start_date => sprint.sprint_start_date, :velocity => sprint.calculate_velocity, 
+                       :sprint_end_date => sprint.sprint_end_date, :discussions => sprint.count_discussions, :story_total => sprint.stories.count,
+                       :stories_completed => sprint.count_completed_stories, :task_total => sprint.count_tasks, :tasks_completed => sprint.count_completed_tasks}
     end
     
-    render :json => @info_array
+    @info[:sprint_info] = @sprint_info
+    @info[:average_velocity] = project.average_velocity
+    render :json => @info
   end
   
   def my_project_stories

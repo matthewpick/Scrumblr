@@ -6,6 +6,7 @@ app.controller('ProjectsController', ["$scope","$window", "ProjectsService", fun
   $scope.lastOpened = 0;
   $scope.project_n = "";
   $scope.sprints = [];
+  $scope.velocity = 0;
   
   this.hideAll = function hideAll() {
     $scope.sprintsVisible = false;
@@ -31,7 +32,8 @@ app.controller('ProjectsController', ["$scope","$window", "ProjectsService", fun
     else
     {
       ProjectsService.getSprints(project_id).then(function(data) {
-        $scope.sprints = data;       
+        $scope.sprints = data.sprint_info;
+        $scope.velocity = data.average_velocity;       
       });
       
       $scope.sprintsVisible = true;
@@ -57,7 +59,8 @@ app.controller('ProjectsController', ["$scope","$window", "ProjectsService", fun
                   project_id: $scope.lastOpened};
       
       ProjectsService.createSprint($scope.lastOpened, data).then(function(data) {
-        $scope.sprints = data;
+        $scope.sprints = data.sprint_info;
+        $scope.velocity = data.average_velocity;
       });  
     };
   };

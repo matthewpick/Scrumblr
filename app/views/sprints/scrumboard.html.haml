@@ -39,8 +39,10 @@
               .panel-body
                 =task.description
               .panel-footer
-                %span.glyphicon.glyphicon-chevron-left
-                %span.glyphicon.glyphicon-chevron-right.pull-right
+                =link_to "/tasks/#{task.id}/moveleft" do
+                  %span.glyphicon.glyphicon-chevron-left
+                =link_to "/tasks/#{task.id}/moveright" do
+                  %span.glyphicon.glyphicon-chevron-right.pull-right
       .col-sm-3
         - story.tasks.each do |task|
           - if task.status=='in_progress'
@@ -52,8 +54,10 @@
               .panel-body
                 =task.description
               .panel-footer
-                %span.glyphicon.glyphicon-chevron-left
-                %span.glyphicon.glyphicon-chevron-right.pull-right
+                =link_to "/tasks/#{task.id}/moveleft" do
+                  %span.glyphicon.glyphicon-chevron-left
+                =link_to "/tasks/#{task.id}/moveright" do
+                  %span.glyphicon.glyphicon-chevron-right.pull-right
       .col-sm-3
         - story.tasks.each do |task|
           - if task.status=='in_review'
@@ -65,8 +69,10 @@
               .panel-body
                 =task.description
               .panel-footer
-                %span.glyphicon.glyphicon-chevron-left
-                %span.glyphicon.glyphicon-chevron-right.pull-right
+                =link_to "/tasks/#{task.id}/moveleft" do
+                  %span.glyphicon.glyphicon-chevron-left
+                =link_to "/tasks/#{task.id}/moveright" do
+                  %span.glyphicon.glyphicon-chevron-right.pull-right
       .col-sm-2
         - story.tasks.each do |task|
           - if task.status=='completed'
@@ -78,5 +84,7 @@
               .panel-body
                 =task.description
               .panel-footer
-                %span.glyphicon.glyphicon-chevron-left
-                %span.glyphicon.glyphicon-chevron-right.pull-right
+                =link_to "/tasks/#{task.id}/moveleft" do
+                  %span.glyphicon.glyphicon-chevron-left
+                =link_to "/tasks/#{task.id}/moveright" do
+                  %span.glyphicon.glyphicon-chevron-right.pull-right

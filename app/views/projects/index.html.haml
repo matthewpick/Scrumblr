@@ -131,8 +131,8 @@
                           %label{:for => "startDate"}
                             Sprint Start Date*
                           %div.input-group 
-                            %input#startDate.form-control{:type => "text", :placeholder => "mm-dd-yyyy", "ng-model" => "start_date", "ng-required" => "true", :name => "start_date", 
-                                                          "datepicker-popup" => "MM-dd-yyyy", "close-text" => "Close", "is-open" => "opened1"}
+                            %input#startDate.form-control{:type => "text", :placeholder => "yyyy-MM-dd", "ng-model" => "start_date", "ng-required" => "true", :name => "start_date", 
+                                                          "datepicker-popup" => "yyyy-MM-dd", "close-text" => "Close", "is-open" => "opened1"}
                             %span.input-group-btn
                               %button.btn.btn-default{:type => "button", "ng-click" => "projects.dateOpen($event, 1)"}
                                 %span.glyphicon.glyphicon-calendar
@@ -140,8 +140,8 @@
                           %label{:for => "endDate"}
                             Sprint End Date*
                           %div.input-group
-                            %input#endDate.form-control{:type => "text", :placeholder => "mm-dd-yyyy", "ng-model" => "end_date", :required => "true", :name => "end_date", 
-                                                        "datepicker-popup" => "MM-dd-yyyy", "close-text" => "Close", "is-open" => "opened2"}
+                            %input#endDate.form-control{:type => "text", :placeholder => "yyyy-MM-dd", "ng-model" => "end_date", :required => "true", :name => "end_date", 
+                                                        "datepicker-popup" => "yyyy-MM-dd", "close-text" => "Close", "is-open" => "opened2"}
                             %span.input-group-btn
                               %button.btn.btn-default{:type => "button", "ng-click" => "projects.dateOpen($event, 2)"}
                                 %span.glyphicon.glyphicon-calendar

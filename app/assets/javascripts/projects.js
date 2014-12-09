@@ -68,10 +68,20 @@ app.controller('ProjectsController', ["$scope","$window", "ProjectsService", fun
   this.validateSprint = function validateSprint() {
     for(i=0;i<$scope.sprints.length;i++)
     {
-      if(($scope.start_date >= $scope.sprints[i].sprint_start_date && $scope.start_date <= $scope.sprints[i].sprint_end_date) ||
-         ($scope.end_date <= $scope.sprints[i].sprint_end_date && $scope.end_date >= $scope.sprints[i].sprint_start_date))
+      var sprint_start_date = new Date($scope.sprints[i].sprint_start_date);
+      var sprint_end_date = new Date($scope.sprints[i].sprint_end_date);
+      /*if(($scope.start_date >= $scope.sprints[i].sprint_start_date && $scope.start_date <= $scope.sprints[i].sprint_end_date) ||
+         ($scope.end_date <= $scope.sprints[i].sprint_end_date && $scope.end_date >= $scope.sprints[i].sprint_start_date) ||
+         ($scope.start_date <= $scope.sprints[i].sprint_start_date && $scope.end_date >= $scope.sprints[i].sprint_end_date))
       {
         return false;  
+      }*/
+      
+      if(($scope.start_date >= sprint_start_date && $scope.start_date <= sprint_end_date) ||
+         ($scope.end_date <= sprint_end_date && $scope.end_date >= sprint_start_date) ||
+         ($scope.start_date <= sprint_start_date && $scope.end_date >= sprint_end_date))
+      {
+        return false;
       }
     }
     

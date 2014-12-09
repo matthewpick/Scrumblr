@@ -9,10 +9,10 @@ describe ProjectsController do
       @fake_project.sprints << @fake_sprint
       get :show, {:id => 1}
       expect(assigns(:sprints)).to eq(Project.find('1').sprints)
-      expect(assigns(:info_array)).to eq([{"id" => @fake_sprint.id, "project_id" => @fake_sprint.project_id, "sprint_start_date" => @fake_sprint.sprint_start_date, 
-                                           "velocity" => @fake_sprint.calculate_velocity, "sprint_end_date" => @fake_sprint.sprint_end_date, "discussions" => @fake_sprint.count_discussions,
-                                           "story_total" => @fake_sprint.stories.count, "stories_completed" => @fake_sprint.count_completed_stories, "task_total" => @fake_sprint.count_tasks,
-                                           "tasks_completed" => @fake_sprint.count_completed_tasks }])
+      expect(assigns(:sprint_info)).to eq([{"id" => @fake_sprint.id, "project_id" => @fake_sprint.project_id, "sprint_start_date" => @fake_sprint.sprint_start_date, 
+                                            "velocity" => @fake_sprint.calculate_velocity, "sprint_end_date" => @fake_sprint.sprint_end_date, "discussions" => @fake_sprint.count_discussions,
+                                            "story_total" => @fake_sprint.stories.count, "stories_completed" => @fake_sprint.count_completed_stories, "task_total" => @fake_sprint.count_tasks,
+                                            "tasks_completed" => @fake_sprint.count_completed_tasks }])
     end
   end
   

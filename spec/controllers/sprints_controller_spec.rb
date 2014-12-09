@@ -18,25 +18,16 @@ describe SprintsController do
       expect(assigns(:sprint)).to eq(Sprint.find(1))
       expect(@fake_project.sprints).to include(Sprint.find(1)) 
     end
-    it 'should return an Array containing all the sprints and the number of discussions' do
+    it 'should create an Array containing all the sprints and the number of discussions' do
       post :create, {:project_id => 1, :sprint_info => @info}
       @fake_sprint = Sprint.find(1)
-      expect(assigns(:info_array)).to eq([{"id" => @fake_sprint.id, "project_id" => @fake_sprint.project_id, "sprint_start_date" => @fake_sprint.sprint_start_date, 
-                                           "velocity" => @fake_sprint.calculate_velocity, "sprint_end_date" => @fake_sprint.sprint_end_date, "discussions" => @fake_sprint.count_discussions,
-                                           "story_total" => @fake_sprint.stories.count, "stories_completed" => @fake_sprint.count_completed_stories, "task_total" => @fake_sprint.count_tasks,
-                                           "tasks_completed" => @fake_sprint.count_completed_tasks }])
+      expect(assigns(:sprint_info)).to eq([{"id" => @fake_sprint.id, "project_id" => @fake_sprint.project_id, "sprint_start_date" => @fake_sprint.sprint_start_date, 
+                                            "velocity" => @fake_sprint.calculate_velocity, "sprint_end_date" => @fake_sprint.sprint_end_date, "discussions" => @fake_sprint.count_discussions,
+                                            "story_total" => @fake_sprint.stories.count, "stories_completed" => @fake_sprint.count_completed_stories, "task_total" => @fake_sprint.count_tasks,
+                                            "tasks_completed" => @fake_sprint.count_completed_tasks }])
     end
   end
-=begin  
-  describe 'updating an existing sprint' do
-    it 'should update the sprint with the received info' do
-      @fake_sprint = Sprint.create!(@info)
-      put :update, {:id => 1, :sprint => @info}
-      expect(assigns(:sprint)).to eq(@fake_sprint)
-      expect(@fake_sprint).to receive(:update_attributes).with(@info)
-    end
-  end
-=end  
+ 
   describe 'showing a sprint' do
     it 'should make sprint data available to scrum board view' do 
       @fake_sprint = Sprint.create! Hash[:sprint_start_date => Date.new(2014,11,7), :sprint_end_date => Date.new(2014,11,21)]

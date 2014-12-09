@@ -37,7 +37,7 @@
                     %ul#menu.dropdown-menu{:role => "menu"}
                       -@teams[p.id].each do |member|
                         %li{:role => "presentation"}
-                          %a{:role => "menuitem", :tabindex => "-1", :href => "#"}
+                          %a{:role => "menuitem", :tabindex => "-1", :href => "/users/view_profile/#{member.uid}"}
                             #{member.name}
                       -p.pending_users.each do |pending|
                         %li{:role => "presentation"}

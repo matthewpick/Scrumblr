@@ -1,0 +1,28 @@
+- if @user
+  %div.col-md-12
+    %div.row
+      %h2 User Profile
+
+      %img.no-resize{:src => @user.image_url}
+      %div.form-horizontal
+        %div.col-md-12
+          %div.form-group
+            %label.col-sm-3
+              Name
+            %div.col-sm-8
+              #{@user.name}
+          %div.form-group
+            %label.col-sm-3
+              Github Username
+            %div.col-sm-8
+              #{@user.github_username}
+          %div.form-group
+            %label.col-sm-3
+              UID
+            %div.col-sm-8
+              #{@user.uid}
+          %div.form-group
+            %label.col-sm-3
+              E-Mail
+            %div.col-sm-8
+              #{@user.email}

@@ -49,4 +49,9 @@ class UsersController < ApplicationController
       redirect_to projects_path
     end
   end
+
+  def view_profile
+    user_id = params[:uid]
+    @user = User.find_by_uid(user_id)
+  end
 end

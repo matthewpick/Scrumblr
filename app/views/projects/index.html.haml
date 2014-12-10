@@ -92,28 +92,27 @@
             Sprints
           %li.list-group-item{"ng-repeat" => "sprint in sprints"}
             %div.panel.panel-default
-              %div.panel-heading
+              %div.panel-heading{:role => "tab", :id => "sprintHeading{{sprint.id}}"}
                 %h4.panel-title
                   %a{"ng-click" => "projects.viewScrumboard(sprint.project_id, sprint.id)", :href => "#"}
                     {{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
-                    %span.badge.pull-right
-                      {{sprint.discussions}}
-              %div.panel-body
-                %p
-                  %u
-                    %b At a glance
-                %span.p.pull-right
-                  Veloctiy: {{sprint.velocity}}
-                %p
-                  %i Stories (total/completed)
-                  %br {{sprint.story_total}}/{{sprint.stories_completed}}
-                %p
-                  %i Tasks (total/completed)
-                  %br {{sprint.task_total}}/{{sprint.tasks_completed}}
-            -#%button.btn.btn-link{"ng-click" => "projects.viewScrumboard(sprint.project_id, sprint.id)"}
-              -#{{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
-            -#%span.badge.pull-right
-              -#{{sprint.discussions}}
+                  %span.badge
+                    {{sprint.discussions}}
+                  %a{"data-toggle" => "collapse", :href => "#collapseGlance{{sprint.id}}", "aria-expanded" => "true", "aria-controls" => "collapseGlance{{sprint.id}}"}    
+                    %span.glyphicon.glyphicon-chevron-down.pull-right
+              %div.panel-collapse.collapse{:role => "tabpanel", :id => "collapseGlance{{sprint.id}}", "aria-labelledby" => "sprintGlance"}
+                %div.panel-body
+                  %p
+                    %u
+                      %b At a glance
+                  %span.p.pull-right
+                    Veloctiy: {{sprint.velocity}}
+                  %p
+                    %i Stories (total/completed)
+                    %br {{sprint.story_total}}/{{sprint.stories_completed}}
+                  %p
+                    %i Tasks (total/completed)
+                    %br {{sprint.task_total}}/{{sprint.tasks_completed}}
           %li.list-group-item
             %div#form.panel-group{:role => "tablist", "aria-multiselectable" => "true"}
               %div.panel.panel-default

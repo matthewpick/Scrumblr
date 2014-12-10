@@ -29,5 +29,6 @@ Scrumbler::Application.routes.draw do
   match '/tasks/:task_id/moveright' => 'tasks#move_right', via: :get
   match '/tasks/:task_id' => 'tasks#destroy', via: :delete
   match '/users/view_profile/:uid' => 'users#view_profile', via: :get
+  match '/projects/:project_id/leave' => 'projects#leave_project', via: :post
   root :to => redirect('/home')
 end

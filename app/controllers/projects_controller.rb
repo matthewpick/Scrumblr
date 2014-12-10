@@ -63,4 +63,17 @@ class ProjectsController < ApplicationController
       @project_name = Project.find(params[:project_id]).project_name
     end
   end
+  
+  def leave_project
+    if current_user
+      @user = current_user
+      
+      @user.my_stories_in_project(params[:project_id]).each do |story|
+        @user.stories.delete(story)
+      end
+      
+      @user.projects.delete(Project.find(params[:project_id]))
+      redirect_to projects_path
+    end      
+  end
 end

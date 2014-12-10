@@ -57,10 +57,10 @@
                             %a{:role => "menuitem", :tabindex => "-1", :href => "#"}
                               #{member.name}
                     %span.pull-right
-                      =form_tag "/users/#{invite.id}/respond/1", :method => :post do
-                        %button.btn.btn-link{:type => "submit"}
+                      =link_to "/users/#{invite.id}/respond/1", :method => :post, :confirm => "Join #{invite.project_name}?" do
+                        %button.btn.btn-link
                           Accept
-                      =form_tag "/users/#{invite.id}/respond/0", :method => :post do
+                      =link_to "/users/#{invite.id}/respond/0", :method => :post, :confirm => "Decline #{invite.project_name}?" do
                         %button.btn.btn-link{:type => "submit"}
                           Decline
 

@@ -21,45 +21,63 @@
                     =p.count_discussions
             %div.panel-collapse.collapse{:id => "collapse#{p.id}", :role => "tabpanel", "aria-labelledby" => "heading#{p.id}"}
               %div.panel-body
-                %p
-                  Description: #{p.project_description} 
-                %p
-                  Github Repo: #{p.project_github}
-                %p
-                  Average Sprint Velocity: {{velocity}}
-                %p 
-                  My Total Velocity: #{@velocities[p.id]}
-                %div
-                  %span.btn-group
-                    %button.btn.btn-default.dropdown-toggle{:type => "button", "data-toggle" => "dropdown", "aria-expanded" => "false"}
-                      Team members
-                      %span.caret
-                    %ul#menu.dropdown-menu{:role => "menu"}
-                      -@teams[p.id].each do |member|
-                        %li{:role => "presentation"}
-                          %a{:role => "menuitem", :tabindex => "-1", :href => "/users/view_profile/#{member.uid}"}
-                            #{member.name}
-                      -p.pending_users.each do |pending|
-                        %li{:role => "presentation"}
-                          %a{:role => "menuitem", :tabindex => "-1"}
-                            #{pending.name} (pending)
-                      %li.divider{:role => "presentation"}
-                      %li{:role => "presentation"}
-                        %a{:role => "menuitem", :tabindex => "-1", :href => "#", "ng-click" => "projects.showInviteForm()"}
-                          Invite User
-                  %span
-                    %a.btn.btn-primary.pull-right{:type => "button", :href => "/projects/#{p.id}/stories"}
-                      My Stories
-                %p
-                  =form_tag "users/invite/#{p.id}", :method => :post do
-                    %div.input-group{"ng-show" => "inviteVisible"}
-                      %span.input-group-btn
-                        %button.btn.btn-default{:type => "submit"}
-                          Invite
-                      %input.form-control{:placeholder => "User Email", :type => "email", :name => "email"}
-                      %span.input-group-btn
-                        %button.btn.btn-default{:type => "button", "ng-click" => "projects.hideInviteForm()"}
-                          %span.glyphicon.glyphicon-remove
+                %div.form-horizontal
+                  %div.col-md-12
+                    %div.form-group
+                      %label.col-sm-3
+                        Description:
+                      %div.col-sm-6
+                        =p.project_description
+                    %div.form-group
+                      %label.col-sm-3
+                        Github:
+                      %div.col-sm-6
+                        =p.project_github
+                    %div.form-group
+                      %label.col-sm-3
+                        Average Sprint Velocity:
+                      %div.col-sm-6
+                        {{velocity}}
+                    %div.form-group
+                      %label.col-sm-3
+                        My Total Velocity:
+                      %div.col-sm-6
+                        #{@velocities[p.id]}
+                    %div.form-group
+                      %div.btn-group
+                        %button.btn.btn-default.dropdown-toggle{:type => "button", "data-toggle" => "dropdown", "aria-expanded" => "false"}
+                          Team members
+                          %span.caret
+                        %ul#menu.dropdown-menu{:role => "menu"}
+                          -@teams[p.id].each do |member|
+                            %li{:role => "presentation"}
+                              %a{:role => "menuitem", :tabindex => "-1", :href => "/users/view_profile/#{member.uid}"}
+                                #{member.name}
+                          -p.pending_users.each do |pending|
+                            %li{:role => "presentation"}
+                              %a{:role => "menuitem", :tabindex => "-1"}
+                                #{pending.name} (pending)
+                          %li.divider{:role => "presentation"}
+                          %li{:role => "presentation"}
+                            %a{:role => "menuitem", :tabindex => "-1", :href => "#", "ng-click" => "projects.showInviteForm()"}
+                              Invite User
+                      %span
+                        %a.btn.btn-primary.pull-right{:type => "button", :href => "/projects/#{p.id}/stories"}
+                          My Stories
+                    %div.form-group 
+                      =form_tag "users/invite/#{p.id}", :method => :post do
+                        %div.input-group{"ng-show" => "inviteVisible"}
+                          %span.input-group-btn
+                            %button.btn.btn-default{:type => "submit"}
+                              Invite
+                          %input.form-control{:placeholder => "User Email", :type => "email", :name => "email"}
+                          %span.input-group-btn
+                            %button.btn.btn-default{:type => "button", "ng-click" => "projects.hideInviteForm()"}
+                              %span.glyphicon.glyphicon-remove
+                    %div.form-group
+                      =link_to "projects/#{p.id}/leave", :method => :post, :confirm => "Are you sure you want to leave #{p.project_name}?" do
+                        %button.btn.btn-primary.pull-right
+                          Leave Project
 
         %div.panel.panel-default
           %div#newProject.panel-heading{:role => "tab"}
@@ -96,8 +114,8 @@
                 %h4.panel-title
                   %a{"ng-click" => "projects.viewScrumboard(sprint.project_id, sprint.id)", :href => "#"}
                     {{sprint.sprint_start_date}} - {{sprint.sprint_end_date}}
-                  %span.badge
-                    {{sprint.discussions}}
+                    %span.badge
+                      {{sprint.discussions}}
                   %a{"data-toggle" => "collapse", :href => "#collapseGlance{{sprint.id}}", "aria-expanded" => "true", "aria-controls" => "collapseGlance{{sprint.id}}"}    
                     %span.glyphicon.glyphicon-chevron-down.pull-right
               %div.panel-collapse.collapse{:role => "tabpanel", :id => "collapseGlance{{sprint.id}}", "aria-labelledby" => "sprintGlance"}

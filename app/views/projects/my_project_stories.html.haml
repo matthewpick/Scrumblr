@@ -8,7 +8,8 @@
         -@stories.each do |story|
           %li.list-group-item
             =story.story_name
-            %a.button.btn.btn-link.pull-right{:href => project_sprint_scrumboard_path(story.project_id, story.sprints.first)}
-              View Story
+            =link_to project_sprint_scrumboard_path(story.project_id, story.sprints.first) do
+              %span.pull-right
+                View Story
         
   

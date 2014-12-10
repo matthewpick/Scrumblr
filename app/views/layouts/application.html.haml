@@ -8,25 +8,44 @@
     = csrf_meta_tags
 
   %body{'ng-app' => 'ScrumblrApp'}
-    -#Extra stuff here like maybe put it in a container
-    %div.col-md-12
-      %div.well
-        %div.h1 Scrumblr
+  - if current_user
+    %nav.navbar.navbar-default{role: 'navigation'}
+      %div.navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{href: "#"} Scrumblr
+         
+      %div.collapse.navbar-collapse.navbar-ex1-collapse
+        %ul.nav.navbar-nav
+          %li
+            %a{:href => '/projects'} Projects
+        %ul.nav.navbar-nav.navbar-right
+          %li.dropdown
+            %a.dropdown-toggle{"data-toggle" => "dropdown", href: "#"}
+              #{current_user.github_username}
+              %b.caret
+            %ul.dropdown-menu
+              %li
+                %a{:href => user_path(current_user)} View Profile
+              %li
+                %a{:href => signout_path} Sign Out
+    = yield
+  - else
+    %nav.navbar.navbar-default{role: 'navigation'}
+      %div.navbar-header
+        %button.navbar-toggle{"data-target" => ".navbar-ex1-collapse", "data-toggle" => "collapse", type: "button"}
+          %span.sr-only Toggle navigation
+          %span.icon-bar
+          %span.icon-bar
+          %span.icon-bar
+        %a.navbar-brand{href: "#"} Scrumblr
 
-        - if flash[:notice]
-          %div.alert.alert-info{:role => 'alert'}
-            =flash[:notice]
-        - if current_user
-          %p.welcome! You are logged in via #{current_user.provider} as #{current_user.name}
-          %a.btn.btn-primary{:href => '/projects'}
-            %span Projects
-          %a.btn.btn-primary{:href => user_path(current_user)}
-            %span View Profile
-          %a.btn.btn-primary{:href => signout_path}
-            %span Logout
-        - else
-          %p.login= link_to 'Sign in with github', '/auth/github'
-        -#- if !session[:session_token]
-          -#%p session token lost!
+      %div.collapse.navbar-collapse.navbar-ex1-collapse
+        %ui.nav.navbar-nav.navbar-right
+          %li
+            = link_to 'Sign In Via GitHub', '/auth/github'
 
     = yield

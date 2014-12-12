@@ -6,6 +6,7 @@ class TasksController < ApplicationController
       @task = Task.create! params[:task]
       @story.tasks << @task
     end
+
     @sprint = Sprint.find @story.project_id
     redirect_to project_sprint_scrumboard_path(@sprint.project_id, @sprint.id)
   end

@@ -5,8 +5,10 @@ class StorysController < ApplicationController
     #@story = Story.create!(params[:story])
 	  #render json: @story
     @sprint = Sprint.find params[:sprint_id]
-    if(@sprint!= nil)
+    if @sprint!= nil
       @story = Story.create!(params[:story])
+      @story.project_id = @sprint.project_id
+      @story.save
       @sprint.stories << @story
     end
     redirect_to project_sprint_scrumboard_path(@sprint.project_id, @sprint.id)

@@ -131,6 +131,10 @@
                   %p
                     %i Tasks (total/completed)
                     %br {{sprint.task_total}}/{{sprint.tasks_completed}}
+                    %div.form-group
+                      =link_to "#", :method => :delete, :confirm => "Are you sure you want to delete?" do
+                        %button.btn.btn-primary.pull-right
+                          Delete Sprint
           %li.list-group-item
             %div#form.panel-group{:role => "tablist", "aria-multiselectable" => "true"}
               %div.panel.panel-default

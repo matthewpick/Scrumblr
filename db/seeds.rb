@@ -26,8 +26,8 @@ sprints = [{:sprint_start_date => Date.new(2014,11,17), :sprint_end_date => Date
 story_desc_1 = 'As a team member, So that I can view my progress, I want to view my assigned user stories'
 story_desc_2 = 'Set bounds for a given Sprint, i.e. usually 2 week sprints'
 
-stories = [{:story_name => 'View My Stories', :story_description => story_desc_1, :story_points => 1, :story_status => 'started'},
-           {:story_name => 'Assign Sprint Dates', :story_description => story_desc_2, :story_points => 1, :story_status => 'started'}]
+stories = [{:project_id => 1, :story_name => 'View My Stories', :story_description => story_desc_1, :story_points => 1, :story_status => 'started'},
+           {:project_id => 1, :story_name => 'Assign Sprint Dates', :story_description => story_desc_2, :story_points => 1, :story_status => 'started'}]
            
 tasks = [{:title => 'Write Code', :points => 1, :status => 'completed', :description => 'Solve the problem', :needs_discussion => false},
          {:title => 'Deploy', :points => 1, :status => 'in_progress', :description => 'Deploy to Heroku', :needs_discussion => true},

@@ -37,11 +37,8 @@ class SprintsController < ApplicationController
   end
 
   def destroy
-      project_id = params[:project_id]
-      sprint_id = params[:sprint_id]
-      @current_project = Project(project_id)
-      @current_sprint = Sprint.find(sprint_id)
-      @current_project.sprints.delete(current_sprint)
+      Sprint.delete params[:id]
+      redirect_to '/projects/'
   end
 
   def index

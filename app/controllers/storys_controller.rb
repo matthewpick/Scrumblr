@@ -2,8 +2,14 @@ class StorysController < ApplicationController
 	before_filter :set_current_user
 	
 	def create
-    @story = Story.create!(params[:story])
-	  render json: @story
+    #@story = Story.create!(params[:story])
+	  #render json: @story
+    @sprint = Sprint.find params[:sprint_id]
+    if(@sprint!= nil)
+      @story = Story.create!(params[:story])
+      @sprint.stories << @story
+    end
+    redirect_to project_sprint_scrumboard_path(@sprint.project_id, @sprint.id)
   end
 
   def update
@@ -13,7 +19,8 @@ class StorysController < ApplicationController
   end
 
   def destroy
-    Story.delete params[:storyId]
+    Story.delete params[:id]
+    redirect_to :back
   end
 
   def index

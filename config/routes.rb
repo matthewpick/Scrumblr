@@ -27,6 +27,7 @@ Scrumbler::Application.routes.draw do
   match '/projects/:project_id/stories' => 'projects#my_project_stories', via: :get
   match '/tasks/:task_id/moveleft' => 'tasks#move_left', via: :get
   match '/tasks/:task_id/moveright' => 'tasks#move_right', via: :get
+  match '/tasks/:task_id/discussion' => 'tasks#discussion', via: :post
   match '/tasks/:task_id' => 'tasks#destroy', via: :delete
   match '/users/view_profile/:uid' => 'users#view_profile', via: :get
   match '/projects/:project_id/leave' => 'projects#leave_project', via: :post

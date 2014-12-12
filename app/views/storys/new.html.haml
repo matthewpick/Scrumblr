@@ -1,0 +1,12 @@
+-# new.html.haml in app/views/storys/
+
+.col-sm-6
+  = form_tag sprint_storys_path do
+    .form-group#story_name
+      =label :story, :story_name, 'Story Name'
+      =text_field :story, 'story_name', :class => 'form-control'
+    .form-group#description
+      =label :story, :story_description, 'Description'
+      =text_field :story, 'story_description', :class =>'form-control'
+
+    =submit_tag 'Create Story', :class =>'btn btn-primary pull-right'

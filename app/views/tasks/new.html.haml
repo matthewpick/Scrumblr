@@ -1,2 +1,22 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+-# new.html.haml in app/views/tasks/
+
+.col-sm-6
+  = form_tag story_tasks_path do
+    =label :task, :title, 'Title / Needs Discussion'
+    .input-group#title
+      =text_field :task, 'title', :class => 'form-control'
+      .input-group-addon#needs_discussion
+        =check_box :task, 'needs_discussion', :title =>'Needs Discussion'
+        -#=label :task, :needs_discussion, 'Needs Discussion'
+
+    .form-group#points
+      =label :task, :points, 'Points'
+      =select :task, :points, [1, 2, 3, 4, 5], :class =>'form-control'
+    .form-group#status
+      =label :task, :points, 'Status'
+      =select :task, :status, ['backlog', 'in_progress', 'in_review', 'completed'], :class =>'form-control'
+    .form-group#description
+      =label :task, :description, 'Description'
+      =text_field :task, 'description', :class =>'form-control'
+
+    =submit_tag 'Create Task', :class =>'btn btn-primary pull-right'

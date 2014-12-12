@@ -1,40 +1,55 @@
 -# in app/views/sprints/scrumboard.html.haml
 
-.col-sm-12
-  .btn-group
-    %button.btn.btn-default
-      %strong Sprints
+.col-sm-12.container-fluid
+  .btn-group.text
     %button.btn.btn-default.dropdown-toggle{'data-toggle' =>"dropdown", 'aria-expanded' =>"false"}
+      %strong Sprints
       %span.caret
       %span.sr-only Toggle Dropdown
     %ul.dropdown-menu
       - @scrumboard[:sprint_list].each do |sprint|
         %li= link_to "#{sprint.sprint_start_date}", project_sprint_scrumboard_path(sprint.project_id,sprint)
+  = link_to "New Story",new_sprint_story_path( @scrumboard[:sprint] ), :class=>'btn btn-primary'
 
 .col-sm-12
   .col-sm-1
-    %strong Story
+    %h4 Story
   .col-sm-3
-    %strong Backlog
+    %h4
+      %span.label.label-default Backlog
   .col-sm-3
-    %strong In Progress
+    %h4
+      %span.label.label-primary In Progress
   .col-sm-3
-    %strong In Review
+    %h4
+      %span.label.label-warning In Review
   .col-sm-2
-    %strong Complete
+    %h4
+      %span.label.label-success Complete
 #sprint.col-sm-12
   - @scrumboard[:sprint].stories.each do |story|
-    .form-group.col-sm-12
+    .col-sm-12
       .col-sm-1
-        %h5= story.story_name
+        %h4= story.story_name
+        .btn-group.text
+          %button.btn.btn-default.dropdown-toggle{'data-toggle' =>"dropdown", 'aria-expanded' =>"false"}
+            %strong Edit
+            %span.caret
+            %span.sr-only Toggle Dropdown
+          %ul.dropdown-menu
+            %li=link_to "Add Task","/storys/#{story.id}/tasks/new"
+            %li=link_to "Delete Story","/sprints/#{@scrumboard[:sprint].id}/storys/#{story.id}", :confirm => "Are you sure you want to delete story, #{story.story_name}?", :method=>:delete
       -# story.tasks.each do |task|
       .col-sm-3
         - story.tasks.each do |task|
           - if task.status=='backlog'
             .panel.panel-default
               .panel-heading
-                - if task.needs_discussion
-                  %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                =link_to "/tasks/#{task.id}/discussion", :method => :post do
+                  - if task.needs_discussion
+                    %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                  - else
+                    %span.glyphicon.glyphicon-exclamation-sign.text-primary
                 =task.title
                 =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
                   %span.glyphicon.glyphicon-trash.pull-right
@@ -50,8 +65,11 @@
           - if task.status=='in_progress'
             .panel.panel-info
               .panel-heading
-                - if task.needs_discussion
-                  %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                =link_to "/tasks/#{task.id}/discussion", :method => :post do
+                  - if task.needs_discussion
+                    %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                  - else
+                    %span.glyphicon.glyphicon-exclamation-sign.text-primary
                 =task.title
                 =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
                   %span.glyphicon.glyphicon-trash.pull-right
@@ -67,8 +85,11 @@
           - if task.status=='in_review'
             .panel.panel-warning
               .panel-heading
-                - if task.needs_discussion
-                  %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                =link_to "/tasks/#{task.id}/discussion", :method => :post do
+                  - if task.needs_discussion
+                    %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                  - else
+                    %span.glyphicon.glyphicon-exclamation-sign.text-primary
                 =task.title
                 =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
                   %span.glyphicon.glyphicon-trash.pull-right
@@ -84,8 +105,11 @@
           - if task.status=='completed'
             .panel.panel-success
               .panel-heading
-                - if task.needs_discussion
-                  %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                =link_to "/tasks/#{task.id}/discussion", :method => :post do
+                  - if task.needs_discussion
+                    %span.glyphicon.glyphicon-exclamation-sign.text-danger
+                  - else
+                    %span.glyphicon.glyphicon-exclamation-sign.text-primary
                 =task.title
                 =link_to "/tasks/#{task.id}", :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" do
                   %span.glyphicon.glyphicon-trash.pull-right
@@ -96,3 +120,5 @@
                   %span.glyphicon.glyphicon-chevron-left
                 =link_to "/tasks/#{task.id}/moveright" do
                   %span.glyphicon.glyphicon-chevron-right.pull-right
+.col-sm-12
+  = link_to "New Story",new_sprint_story_path( @scrumboard[:sprint] ), :class=>'btn btn-primary col-sm-12'

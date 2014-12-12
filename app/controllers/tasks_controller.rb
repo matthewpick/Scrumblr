@@ -3,9 +3,11 @@ class TasksController < ApplicationController
     @story = Story.find params[:story_id]
     #TODO check that the story is in DB
     if @story != nil
-      @task = @story.build params[:task]
+      @task = Task.create! params[:task]
+      @story.tasks << @task
     end
-    redirect_to(story_path @story)
+    @sprint = Sprint.find @story.project_id
+    redirect_to project_sprint_scrumboard_path(@sprint.project_id, @sprint.id)
   end
 
   def update
@@ -62,4 +64,10 @@ class TasksController < ApplicationController
     redirect_to :back
   end
 
+  def discussion
+    @task = Task.find params[:task_id]
+    @task.needs_discussion = !@task.needs_discussion
+    @task.save
+    redirect_to :back
+  end
 end

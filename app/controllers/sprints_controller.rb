@@ -37,7 +37,8 @@ class SprintsController < ApplicationController
   end
 
   def destroy
-  
+      Sprint.delete params[:id]
+      redirect_to '/projects/'
   end
 
   def index
